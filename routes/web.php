@@ -18,3 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+Route::resource('user', 'UserController', ['except' => ['create','store']]);
+
+Route::resource('patient', 'PatientController');
+
+Route::resource('product', 'ProductController');
+
+Route::resource('loan', 'LoanController');

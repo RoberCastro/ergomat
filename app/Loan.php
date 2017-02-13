@@ -16,8 +16,8 @@ class Loan extends Model
 		return $this->belongsTo('App\Patient');
 	}
 
-	public function product()
+	public function products()
 	{
-		return $this->belongsToMany('App\Products');
+		return $this->belongsToMany('App\Product');
 	}
 }

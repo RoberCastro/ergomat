@@ -9,6 +9,14 @@ class Patient extends Model
         // ATTRIBUS
 	protected $fillable = ['reference'];
 
+	public function loans()
+	{
+		return $this->hasMany('App\Loan');
+	}
 
+	public function user()
+	{
+		return $this->belongsTo('App\User');
+	}
 
 }

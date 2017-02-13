@@ -15,6 +15,14 @@ class CreatePatientsTable extends Migration
     {
        Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('restrict')
+            ->onUpdate('restrict');
+
             $table->string('reference');
             $table->timestamps();
         });    
@@ -27,6 +35,9 @@ class CreatePatientsTable extends Migration
      */
     public function down()
     {
+        Schema::table('patients', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
         Schema::drop('patients');
     }
 }

@@ -13,7 +13,8 @@ class Product extends Model
     // RELATIONS
 
 
-	public function loan()
+	public function loans()
 	{
-		return $this->belongsToMany('App\Loans');
-	}}
+		return $this->belongsToMany('App\Loan');
+	}
+}
