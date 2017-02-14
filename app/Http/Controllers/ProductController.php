@@ -4,8 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use Illuminate\Support\Facades\Storage;
+use App\Product;
+use Auth;
+
+
 class ProductController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +30,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+
+        return view('product.index', ['products' => $products]);
     }
 
     /**
@@ -45,8 +64,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $product = Product::find($id);
+
+        return view('product.show', ['product' => $product]);    }
 
     /**
      * Show the form for editing the specified resource.
@@ -79,6 +99,10 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
+        $product = Product::find($id);     
+        $product->delete();
+
+        //$this->authorize('delete', $product);
+
+        return redirect()->back();    }
 }

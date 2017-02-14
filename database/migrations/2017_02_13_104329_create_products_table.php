@@ -19,8 +19,10 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->string('side');
             $table->double('price');
+            $table->date('pro_date_status');
             $table->timestamps();
-        });    }
+        });    
+   }
 
     /**
      * Reverse the migrations.
