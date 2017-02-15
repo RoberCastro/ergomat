@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ProductRequest;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use App\Product;
@@ -42,7 +42,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create');
     }
 
     /**
@@ -53,7 +53,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->side = $request->side;
+        $product->price = $request->price;
+        $product->pro_date_status = $request->pro_date_status;
+        $product->save();
+
+        return view('product.show', ['product' => $product]);    
     }
 
     /**

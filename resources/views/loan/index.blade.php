@@ -17,7 +17,8 @@
                                 <th>ID</th>
                                 <th>Date de start</th>
                                 <th>Date de fin</th>
-                                <th>products</th>   
+                                <th>Products</th>   
+                                <th>Option</th>   
                             </tr>
                         </thead>
                         <tbody>
@@ -51,34 +52,11 @@
                     <div class="row">
                     
                         @include('layouts.errors')
-
-                        <div class="col-md-4">
-                          {!! Form::open(['route' => 'product.store']) !!}
-                          <div class="form-group">
-                             {!! Form::label('name', 'Ajouter un produit', []) !!}
-                             {!! Form::text('name', null, ['class' => 'form-control']) !!}           
-                         </div>
-                         {!! Form::submit('Ajouter', ['class' => 'btn btn-info btn-sm']) !!}
-                         {!! Form::close() !!}  
+                        <a href="{{ route('product.create') }}">Ajouter un produit</a>
                      </div>
-                     <div class="col-md-8">
-                        @if($products->isEmpty())
-                        <p>Vous n'avez pas encore de product.</p>
-                        @else
-                        @foreach($products as $product)
-                        <span class="label label-success">{{ $product->name }}</span>
-                        @endforeach
-                        @endif
-                    </div>       
+    
                 </div>
             </div>
-
-
-
-
-
-
-
         </div>
     </div>
 </div>
