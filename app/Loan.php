@@ -10,6 +10,12 @@ class Loan extends Model
 	'date_start', 'date_end'
 	];
 
+	// GET SET
+	public function getProductListAttribute()
+	{
+		return $this->products->pluck('id')->all();
+	}
+
     // RELATIONS
 	public function patient()
 	{

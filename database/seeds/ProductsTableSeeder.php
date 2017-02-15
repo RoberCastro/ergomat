@@ -30,5 +30,6 @@ class ProductsTableSeeder extends Seeder
     			'price' => 250, 
     			'pro_date_status' => '25.02.2017',
     			]);
-    	}    }
+    	}    
+    }
 }

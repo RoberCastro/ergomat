@@ -11,6 +11,8 @@
                 <div class="panel-body">
                     You are logged in!
                     <a href="{{ route('product.index') }}" class="btn btn-info">Voir tous les produits</a>
+                    <a href="{{ route('loan.index') }}" class="btn btn-info">Voir tous les prêts</a>
+
 
                 </div>
             </div>
