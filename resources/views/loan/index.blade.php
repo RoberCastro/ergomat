@@ -16,14 +16,16 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Date de start</th>
-                                <th>products</th>
+                                <th>Date de fin</th>
+                                <th>products</th>   
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($loans as $loan)
                             <tr>
-                                <td><a href="{{ route('loan.show', $loan->id) }}">{{ $loan->name }}</a></td>
-                                <td><a href="{{ route('user.show', $loan->user->id) }}">{{ $loan->user->name }}</a></td>
+                                <td><a href="{{ route('loan.show', $loan->id) }}">{{ $loan->id }}</a></td>
+                                <td><a>{{ $loan->date_start }}</a></td>
+                                <td><a>{{ $loan->date_end }}</a></td>
                                 <td>
                                     @foreach($loan->products as $product)
                                     <span class="label label-success">{{ $product->name }}</span>
