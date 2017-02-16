@@ -17,6 +17,9 @@ Route::get('/', function () { return view('welcome'); });
 
 
 Route::get('/home', 'HomeController@index')->name('dashboard');
+Route::get('/admin/testemail', 'HomeController@testEmail')->name('admin.email')->middleware(['auth','admin']);
+Route::get('/admin', 'HomeController@admin')->name('admin')->middleware(['auth','admin']);
+
 
 
 /*
@@ -25,7 +28,7 @@ Route::get('/home', 'HomeController@index')->name('dashboard');
 |--------------------------------------------------------------------------
 */
 
-Route::resource('user', 'UserController', ['except' => ['create','store']]);
+Route::resource('user', 'UserController');
 
 Route::resource('patient', 'PatientController');
 

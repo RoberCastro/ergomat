@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'hello@example.com',
-        'name' => 'Example',
+        'address' => 'robertoicastro@gmail.com',
+        'name' => 'Administrateur du site Ergomat',
     ],
 
     /*

@@ -14,10 +14,14 @@
                     <a href="{{ route('loan.index') }}" class="btn btn-info">Voir tous les prêts</a>
 
 
+                    @if(Auth::user()->isadmin)
+                    <a href="{{ route('admin') }}" class="btn btn-warning">Administration</a>
+                    @endif
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
