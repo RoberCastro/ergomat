@@ -41,19 +41,27 @@
                 @endif
               </div>
             </div>
-          <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
-              <button type="submit" class="btn btn-primary">
-                Register
-              </button>
+            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+              <label for="email" class="col-md-4 control-label">Est-il admin?</label>
+
+              <div class="col-md-6">
+                {{ Form::checkbox('isadmin', 0, false) }}
+              </div>
             </div>
-          </div>
-        </form>
-        <hr />
-        <a href="{{ route('admin.email') }}">Test email</a>
+
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-primary">
+                  Register
+                </button>
+              </div>
+            </div>
+          </form>
+          <hr />
+          <a href="{{ route('admin.email') }}">Test email</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 @endsection

@@ -63,10 +63,19 @@ class UserController extends Controller
 
         $user->password = bcrypt($password);
 
-        //Send an email pour reseter son password
-        $this->sendResetLinkEmail($request);
+        $isadmin = 0;
+        if ($request->isadmin === 1){
+            $isadmin = 1;
+        }
+
+        $user->isadmin = $isadmin;
+
+
         //Sauvegarde l'utilisateur
         $user->save();
+        
+        //Send an email pour reseter son password
+        $this->sendResetLinkEmail($request);
 
         return view('admin');
     }
