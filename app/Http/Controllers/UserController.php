@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PasswordRequest;
 use App\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+//use Illuminate\Foundation\Auth\ResetsPasswords;
+
+
 
 class UserController extends Controller
 {
+    use SendsPasswordResetEmails;
+    //use ResetsPasswords;
 
     /**
     * Create a new controller instance.
@@ -57,6 +63,9 @@ class UserController extends Controller
 
         $user->password = bcrypt($password);
 
+        //Send an email pour reseter son password
+        $this->sendResetLinkEmail($request);
+        //Sauvegarde l'utilisateur
         $user->save();
 
         return view('admin');
@@ -101,7 +110,7 @@ class UserController extends Controller
         $user->update();
 
         return view('user.show', ['user' => $user]);
-    }   
+    }
     /**
     * Remove the specified resource from storage.
     *
