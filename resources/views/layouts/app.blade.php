@@ -20,6 +20,11 @@
     'csrfToken' => csrf_token(),
   ]); ?>
   </script>
+  {{--
+  <link rel="stylesheet" href="{{asset('css/bootstrap-theme.min.css')}}">
+  <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
+ --}}
+
 </head>
 <body>
   <div id="app">

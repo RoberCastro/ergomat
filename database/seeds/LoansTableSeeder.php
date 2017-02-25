@@ -17,18 +17,23 @@ class LoansTableSeeder extends Seeder
         $dttt = Carbon::create(2017, 12, 30, 14, 25, 45, 'Europe/Zurich');
 
 
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 2; $i++) {
     		Loan::create([
     			'date_start' => $dt->toDateString(),
     			'date_end' => $dttt->toDateString(),
+          'created_by' => 'Admin',
+          'mofidied_by' => 'Admin',
     			]);
     	}
 
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 2; $i++) {
     		Loan::create([
     			'date_start' => $dt->toDateString(),
     			'date_end' => $dttt->toDateString(),
+          'created_by' => 'Basic',
+          'mofidied_by' => 'Basic',
+
     			]);
-    	} 
+    	}
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
- 
+
 class CreateLoansTable extends Migration
 {
     /**
@@ -13,13 +13,15 @@ class CreateLoansTable extends Migration
      */
     public function up()
     {
-            
+
         Schema::create('loans', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date_start');
             $table->date('date_end');
+            $table->string('created_by');
+            $table->string('mofidied_by');
             $table->timestamps();
-        });    
+        });
     }
 
     /**

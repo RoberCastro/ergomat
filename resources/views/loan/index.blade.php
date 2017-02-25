@@ -15,7 +15,7 @@
               <th>ID</th>
               <th>Date de start</th>
               <th>Date de fin</th>
-              <th>Products</th>
+              <th>Produits</th>
               <th>Option</th>
             </tr>
           </thead>
@@ -23,8 +23,8 @@
             @foreach($loans as $loan)
               <tr>
                 <td><a href="{{ route('loan.show', $loan->id) }}">{{ $loan->id }}</a></td>
-                <td><a>{{ $loan->date_start }}</a></td>
-                <td><a>{{ $loan->date_end }}</a></td>
+                <td><p>{{ $loan->date_start }}</p></td>
+                <td><p>{{ $loan->date_end }}</p></td>
                 <td>
                   @foreach($loan->products as $product)
                     <span class="label label-success">{{ $product->name }}</span>
@@ -54,7 +54,7 @@
       </div>
 
     </div>
-    
+
   </div>
 </div>
 @endsection
