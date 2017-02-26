@@ -53,7 +53,9 @@ class LoanController extends Controller
   public function store(Request $request)
   {
     $loan = new Loan;
-    $loan->created_by = Auth::id();
+    $user = User::find(Auth::id());
+
+    $loan->created_by = $user->email;
     $loan->date_start = $request->date_start;
     $loan->date_end = $request->date_end;
     $loan->save();
