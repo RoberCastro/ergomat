@@ -21,6 +21,7 @@ Route::get('/admin/testemail', 'HomeController@testEmail')->name('admin.email')-
 Route::get('/admin', 'HomeController@admin')->name('admin')->middleware(['auth','admin']);
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes Resources

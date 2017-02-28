@@ -25,7 +25,7 @@ class CreatePatientsTable extends Migration
 
             $table->string('reference');
             $table->timestamps();
-        });    
+        });
    }
 
     /**
