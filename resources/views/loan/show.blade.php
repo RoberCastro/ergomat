@@ -10,9 +10,18 @@
     </div>
 
     <div class="panel-body">
-      <h2>{{ $loan->id }}</h2>
-      <p>
-        {{ $loan->date_start }}
+      <h2>Id du prêt : {{ $loan->id }}</h2>
+      <p>Date de début :
+        {{ Carbon\Carbon::parse($loan->date_start)->format('d-M-Y') }}
+      </p>
+      <p>Date de fin :
+        {{ Carbon\Carbon::parse($loan->date_end)->format('d-M-Y')  }}
+      </p>
+      <p>Crée par :
+        {{ $loan->created_by }}
+      </p>
+      <p>Modifié par :
+        {{ $loan->modified_by }} en: {{ Carbon\Carbon::parse($loan->updated_at)->format('d-M-Y')  }}
       </p>
       <hr>
       <div class="row">
@@ -22,6 +31,6 @@
       </div>
 
     </div>
-    
+
   </div>
 @endsection

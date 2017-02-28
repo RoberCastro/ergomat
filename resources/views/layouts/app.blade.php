@@ -20,10 +20,18 @@
     'csrfToken' => csrf_token(),
   ]); ?>
   </script>
-  {{--
-  <link rel="stylesheet" href="{{asset('css/bootstrap-theme.min.css')}}">
-  <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
- --}}
+  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", (event) =>{
+    //do work
+    $(window).load(function () {
+      $("#test").datepicker();
+    });
+
+  });
+  </script> -->
+
 
 </head>
 <body>
@@ -56,33 +64,33 @@
           <ul class="nav navbar-nav navbar-right">
             <!-- Authentication Links -->
             @if (Auth::guest())
-              <li><a href="{{ url('/login') }}">Login</a></li>
+            <li><a href="{{ url('/login') }}">Login</a></li>
             @else
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                  {{ Auth::user()->name }} <span class="caret"></span>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                {{ Auth::user()->name }} <span class="caret"></span>
+              </a>
+
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a href="{{ route('user.show', Auth::id()) }}">Profil</a>
+                </li>
+                <li>
+                  <a href="{{ route('user.edit', Auth::id()) }}">Seetings</a>
+                </li>
+                <li>
+                  <a href="{{ url('/logout') }}"
+                  onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
+                  Logout
                 </a>
 
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a href="{{ route('user.show', Auth::id()) }}">Profil</a>
-                  </li>
-                  <li>
-                    <a href="{{ route('user.edit', Auth::id()) }}">Seetings</a>
-                  </li>
-                  <li>
-                    <a href="{{ url('/logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    Logout
-                  </a>
-
-                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                  </form>
-                </li>
-              </ul>
-            </li>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+              </li>
+            </ul>
+          </li>
           @endif
         </ul>
       </div>
@@ -112,25 +120,15 @@
                 <table class="table">
                   <tr>
                     <td>
-                      <span class="glyphicon glyphicon-pencil text-primary"></span><a href="http://www.jquery2dotnet.com">Articles</a>
+                      <span class="glyphicon glyphicon-pencil text-primary"></span><a href="{{ route('loan.index') }}">Tous les prêts</a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <span class="glyphicon glyphicon-flash text-success"></span><a href="http://www.jquery2dotnet.com">News</a>
+                      <span class="glyphicon glyphicon-flash text-success"></span><a href="{{ route('loan.create') }}">Créer un nouveau</a>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <span class="glyphicon glyphicon-file text-info"></span><a href="http://www.jquery2dotnet.com">Newsletters</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span class="glyphicon glyphicon-comment text-success"></span><a href="http://www.jquery2dotnet.com">Comments</a>
-                      <span class="badge">42</span>
-                    </td>
-                  </tr>
+
                 </table>
               </div>
             </div>
@@ -234,7 +232,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-9 col-md-9">
+      <div class="col-sm-9 col-md-9" style="padding-left : 30px;">
         <div class="row">
           @yield('content')
         </div>
@@ -245,5 +243,6 @@
 
 <!-- Scripts -->
 <script src="/js/app.js"></script>
+
 </body>
 </html>

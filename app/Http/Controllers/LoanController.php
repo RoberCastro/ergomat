@@ -8,6 +8,7 @@ use App\Loan;
 use App\User;
 use App\Product;
 use Auth;
+use Carbon\Carbon;
 
 class LoanController extends Controller
 {
@@ -54,11 +55,27 @@ class LoanController extends Controller
   {
     $loan = new Loan;
     $user = User::find(Auth::id());
+    $inputS  = $request->date_start;
+    $formatS = 'Y-m-d';
+
+
+
+    $datestart = Carbon::createFromFormat($formatS, $inputS);
 
     $loan->created_by = $user->email;
-    $loan->date_start = $request->date_start;
-    $loan->date_end = $request->date_end;
+    $loan->date_start = $datestart;
+
+    if($request->date_end == ""){
+
+      $loan->date_end = null;
+
+    }
+    else {
+      
+      $loan->date_end = $request->date_end;
+    }
     $loan->save();
+    //    $loan->date_end = Carbon::parse($request->date_end)->format('d/m/Y');
 
     //$loan->products()->attach($request->product_list);
 

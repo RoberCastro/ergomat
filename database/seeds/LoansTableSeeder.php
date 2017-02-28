@@ -22,7 +22,7 @@ class LoansTableSeeder extends Seeder
     			'date_start' => $dt->toDateString(),
     			'date_end' => $dttt->toDateString(),
           'created_by' => 'Admin',
-          'mofidied_by' => 'Admin',
+          'modified_by' => 'Admin',
     			]);
     	}
 
@@ -31,7 +31,7 @@ class LoansTableSeeder extends Seeder
     			'date_start' => $dt->toDateString(),
     			'date_end' => $dttt->toDateString(),
           'created_by' => 'Basic',
-          'mofidied_by' => 'Basic',
+          'modified_by' => 'Basic',
 
     			]);
     	}

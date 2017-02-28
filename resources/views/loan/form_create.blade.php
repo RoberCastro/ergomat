@@ -6,13 +6,13 @@
 
 <div class="form-group">
   {!! Form::label('date_start', 'Date de début', []) !!}
-  {!! Form::text('date_start', null, ['class'=>'form-control']) !!}
+  {!! Form::date('date_start', null, ['class'=>'form-control']) !!}
 </div>
 
-</script>
 <div class="form-group">
   {!! Form::label('date_end', 'Date de fin', []) !!}
-  {!! Form::text('date_end', null, ['class'=>'form-control']) !!}
+  {!! Form::date('date_end', null, ['class'=>'form-control']) !!}
+
 </div>
 
 <div class="form-group">
