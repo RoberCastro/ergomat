@@ -44,16 +44,9 @@ class LoanController extends Controller
   public function create()
   {
     $patient = Patient::all();
-    return view('loan.create', ['patient' => $patient]);
-  }
+    $user = User::find(Auth::id());
 
-  public function testfunction(Illuminate\Http\Request $request)
-  {
-    if ($request->isMethod('post')){
-      return response()->json(['response' => 'This is post method']);
-    }
-
-    return response()->json(['response' => 'This is get method']);
+    return view('loan.create', ['patient' => $patient, 'user' => $user]);
   }
 
   /**
@@ -68,8 +61,6 @@ class LoanController extends Controller
     $user = User::find(Auth::id());
     $inputS  = $request->date_start;
     $formatS = 'Y-m-d';
-
-
 
     $datestart = Carbon::createFromFormat($formatS, $inputS);
 

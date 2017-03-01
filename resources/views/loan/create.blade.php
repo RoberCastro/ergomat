@@ -29,8 +29,8 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
           <div class="panel panel-default" >
             <div class="panel-heading">Choisissez un patient</div>
             <div class="panel-body">
-              <div class="container">
-                <button class="btn-success btn-sm" id="btn-add"><i class="fa fa-plus-circle"></i> Add</button><br/><br/>
+              <div class="container" style="width: 100%;" >
+                <button class="btn-success btn-sm" id="btn-add"><i class="fa fa-plus-circle"></i> Ajouter un patient</button><br/><br/>
                 <div class="alert alert-danger info" style="display:none;">
                   <ul></ul>
                 </div>
@@ -40,18 +40,17 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
                       <tr>
                         <th>Numero de patient</th>
 
-                        <th>&nbsp;</th>
                       </tr>
                     </thead>
                     <tbody id="patient-list" name="patient-list">
                       @foreach($patient as $patients)
                         <tr id="patient{{ $patients->id }}">
+
                           <td>{{ $patients->reference }}</td>
 
-                          <td></td>
-                          {{-- <button class="btn btn-xs btn-primary open-modal" value="{{$patients->id}}"><i class="glyphicon glyphicon-edit"></i> Edit</button>
-                          <button class="btn btn-xs btn-danger delete" value="{{$patients->id}}"><i class="glyphicon glyphicon-trash"></i> Delete</button>
-                          --}}
+ <!-- <button class="btn btn-xs btn-primary open-modal" value="{{$patients->id}}"><i class="glyphicon glyphicon-edit"></i> Edit</button>
+                          <button class="btn btn-xs btn-danger delete" value="{{$patients->id}}"><i class="glyphicon glyphicon-trash"></i> Delete</button> -->
+
                         </tr>
                       @endforeach
                     </tbody>
@@ -63,7 +62,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <h4 class="modal-title" id="myModalLabel">patient Form</h4>
+                          <h4 class="modal-title" id="myModalLabel">Nouveau patient</h4>
                         </div>
                         <div class="modal-body">
                           {!! Form::open(array('id' => 'frm', 'name' => 'frm', 'class' => 'form-horizontal')) !!}

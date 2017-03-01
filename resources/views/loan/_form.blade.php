@@ -2,46 +2,13 @@
     <ul></ul>
 </div>
 <div class="form-group">
-    <label class="col-md-4 control-label">First Name</label>
+    <label class="col-md-4 control-label">Reference du patient</label>
     <div class="col-md-8">
-        {!! Form::text('first_name', null, ['class' => 'form-control', 'id' => 'first_name']) !!}
+      {!! Form::text('user_id', $user->id, ['class' => 'form-control', 'id' => 'user_id']) !!}
+      {!! Form::text('reference', null, array('class' => 'form-control', 'id' => 'reference','data-url'=> URL::route("store_patient")) ) !!}
     </div>
 </div>
 
-<div class="form-group">
-    <label class="col-md-4 control-label">Last Name</label>
-    <div class="col-md-8">
-        {!! Form::text('last_name', null, ['class' => 'form-control', 'id' => 'last_name']) !!}
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-md-4 control-label">Address</label>
-    <div class="col-md-8">
-        {!! Form::textarea('address', null, ['class' => 'form-control', 'id' => 'address', 'rows' => 5]) !!}
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-md-4 control-label">City</label>
-    <div class="col-md-8">
-        {!! Form::text('city', null, ['class' => 'form-control', 'id' => 'city']) !!}
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-md-4 control-label">Post Code</label>
-    <div class="col-md-8">
-        {!! Form::text('postal_code', null, ['class' => 'form-control', 'id' => 'postal_code']) !!}
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-md-4 control-label">Email</label>
-    <div class="col-md-8">
-        {!! Form::text('email', null, ['class' => 'form-control', 'id' => 'email']) !!}
-    </div>
-</div>
 
 <div class="form-actions">
     <div class="row">

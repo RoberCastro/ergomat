@@ -12,6 +12,7 @@
 
   <!-- Styles -->
   <link href="/css/app.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
   <link href="/css/robcss.css" rel="stylesheet">
 
   <!-- Scripts -->
@@ -24,13 +25,13 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   document.addEventListener("DOMContentLoaded", (event) =>{
-    //do work
-    $(window).load(function () {
-      $("#test").datepicker();
-    });
+  //do work
+  $(window).load(function () {
+  $("#test").datepicker();
+});
 
-  });
-  </script> -->
+});
+</script> -->
 
 
 </head>
@@ -199,11 +200,11 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFourb"><span class="glyphicon glyphicon-file">
                 </span>Ventes</a>
               </h4>
             </div>
-            <div id="collapseFour" class="panel-collapse collapse">
+            <div id="collapseFourb" class="panel-collapse collapse">
               <div class="panel-body">
                 <table class="table">
                   <tr>
@@ -230,6 +231,14 @@
               </div>
             </div>
           </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a href="{{ route('patient.index') }}"><span class="glyphicon glyphicon-home">
+                </span>Liste de patients</a>
+              </h4>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-sm-9 col-md-9" style="padding-left : 30px;">
@@ -243,6 +252,7 @@
 
 <!-- Scripts -->
 <script src="/js/app.js"></script>
+<script src="/js/app_rob.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
