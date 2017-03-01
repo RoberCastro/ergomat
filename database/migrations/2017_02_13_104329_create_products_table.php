@@ -20,8 +20,9 @@ class CreateProductsTable extends Migration
             $table->string('side');
             $table->double('price');
             $table->date('pro_date_status');
+            $table->double('quantity');
             $table->timestamps();
-        });    
+        });
    }
 
     /**

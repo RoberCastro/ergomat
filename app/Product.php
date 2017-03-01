@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = [
-	'name', 'description', 'side', 'price', 'pro_date_status'
+	protected $fillable = [
+		'name', 'description', 'side', 'price', 'pro_date_status','quantity'
 	];
 
 
 
 
 
-    // RELATIONS
+	// RELATIONS
 
 	public function loans()
 	{

@@ -59,6 +59,8 @@ class ProductController extends Controller
     $product->side = $request->side;
     $product->price = $request->price;
     $product->pro_date_status = $request->pro_date_status;
+    $product->quantity = $request->quantity;
+
     $product->save();
 
     return view('product.show', ['product' => $product]);
