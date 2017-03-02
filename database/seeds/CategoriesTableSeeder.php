@@ -1,0 +1,31 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use App\Categorie;
+
+
+
+class CategoriesTableSeeder extends Seeder
+{
+  /**
+  * Run the database seeds.
+  *
+  * @return void
+  */
+  public function run()
+  {
+    for ($i=0; $i < 3; $i++) {
+      Categorie::create([
+        'name' => 'Chambre'.$i,
+      ]);
+
+    }
+
+    for ($i=0; $i < 3; $i++) {
+      Categorie::create([
+        'name' => 'Main'.$i,
+      ]);
+
+    }
+  }
+}

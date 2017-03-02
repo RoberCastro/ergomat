@@ -14,6 +14,11 @@ class Patient extends Model
 		return $this->hasMany('App\Loan');
 	}
 
+	public function sales()
+	{
+		return $this->hasMany('App\Sale');
+	}
+
 	public function user()
 	{
 		return $this->belongsTo('App\User');

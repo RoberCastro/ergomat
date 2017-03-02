@@ -15,6 +15,22 @@ class CreateProductsTable extends Migration
     {
        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('categorie_id')->unsigned();
+            $table->foreign('categorie_id')
+            ->references('id')
+            ->on('categories')
+            ->onDelete('restrict')
+            ->onUpdate('restrict');
+
+            $table->integer('statu_id')->unsigned();
+            $table->foreign('statu_id')
+            ->references('id')
+            ->on('status')
+            ->onDelete('restrict')
+            ->onUpdate('restrict');
+
+
             $table->string('name');
             $table->text('description');
             $table->string('side');
@@ -32,6 +48,10 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+         Schema::table('products', function (Blueprint $table) {
+            $table->dropForeign(['categorie_id']);
+            $table->dropForeign(['statu_id']);
+         });
         Schema::drop('products');
     }
 }

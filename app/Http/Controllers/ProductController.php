@@ -7,6 +7,8 @@ use App\Http\Requests\ProductRequest;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use App\Product;
+use App\Statu;
+use App\Categorie;
 use Auth;
 
 
