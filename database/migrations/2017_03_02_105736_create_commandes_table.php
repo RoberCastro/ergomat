@@ -17,7 +17,7 @@ class CreateCommandesTable extends Migration
     Schema::create('commandes', function (Blueprint $table) {
       $table->increments('id');
       $table->double('price');
-      $table->date('date_sale')->nullable();
+      $table->date('date_commande')->nullable();
       $table->string('created_by')->nullable();
       $table->string('modified_by')->nullable();
       $table->timestamps();

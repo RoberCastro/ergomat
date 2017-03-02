@@ -16,6 +16,14 @@ class CreateLoansTable extends Migration
 
         Schema::create('loans', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('patient_id')->unsigned();
+            $table->foreign('patient_id')
+            ->references('id')
+            ->on('patients')
+            ->onDelete('restrict')
+            ->onUpdate('restrict');
+
             $table->date('date_start')->nullable();
             $table->date('date_end')->nullable();
             $table->string('created_by')->nullable();

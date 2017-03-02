@@ -19,6 +19,7 @@ class LoansTableSeeder extends Seeder
 
         for ($i=0; $i < 2; $i++) {
     		Loan::create([
+          'patient_id' => 1,
     			'date_start' => $dt->toDateString(),
     			'date_end' => $dttt->toDateString(),
           'created_by' => 'Admin',
@@ -28,6 +29,7 @@ class LoansTableSeeder extends Seeder
 
         for ($i=0; $i < 2; $i++) {
     		Loan::create([
+          'patient_id' => 2,
     			'date_start' => $dt->toDateString(),
     			'date_end' => $dttt->toDateString(),
           'created_by' => 'Basic',
