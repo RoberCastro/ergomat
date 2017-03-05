@@ -170,22 +170,12 @@
                 <table class="table">
                   <tr>
                     <td>
-                      <span class="glyphicon glyphicon-usd"></span><a href="http://www.jquery2dotnet.com">Sales</a>
+                      <span class="glyphicon glyphicon-usd"></span><a href="{{ route('commande.index') }}">Commandes</a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Products</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span class="glyphicon glyphicon-shopping-cart"></span><a href="http://www.jquery2dotnet.com">Shopping Cart</a>
+                      <span class="glyphicon glyphicon-user"></span><a href="{{ route('commande.create') }}">Créer une nouvelle commande</a>
                     </td>
                   </tr>
                 </table>
@@ -204,22 +194,12 @@
                 <table class="table">
                   <tr>
                     <td>
-                      <span class="glyphicon glyphicon-usd"></span><a href="http://www.jquery2dotnet.com">Sales</a>
+                      <span class="glyphicon glyphicon-usd"></span><a href="{{ route('sale.index') }}">Ventes</a>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Products</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span class="glyphicon glyphicon-shopping-cart"></span><a href="http://www.jquery2dotnet.com">Shopping Cart</a>
+                      <span class="glyphicon glyphicon-user"></span><a href="{{ route('sale.create') }}">Créer une nouvelle vente</a>
                     </td>
                   </tr>
                 </table>

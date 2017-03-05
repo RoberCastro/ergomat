@@ -91,6 +91,9 @@ class ProductController extends Controller
   {
     $product = Product::find($id);
 
+    $this->authorize('edit', $product);
+
+
     return view('product.edit', ['product' => $product]);
   }
 
@@ -106,6 +109,9 @@ class ProductController extends Controller
     $product = Product::find($id);
     $product->update($request->all());
 
+    $this->authorize('update', $product);
+
+
     return view('product.show', ['product' => $product]);
   }
 
@@ -120,7 +126,8 @@ class ProductController extends Controller
     $product = Product::find($id);
     $product->delete();
 
-    //$this->authorize('delete', $product);
+    $this->authorize('delete', $product);
 
-    return redirect()->back();    }
+    return redirect()->back();
   }
+}

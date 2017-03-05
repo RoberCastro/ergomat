@@ -13,6 +13,7 @@
             <tr>
               <th>Name</th>
               <th>Côté</th>
+              <th>Prix</th>
               <th>Suprimmer?</th>
             </tr>
           </thead>
@@ -20,7 +21,8 @@
             @foreach($products as $product)
               <tr>
                 <td><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></td>
-                <td><a href="{{ route('product.show', $product->id) }}">{{ $product->side }}</a></td>
+                <td><p>{{ $product->side }}</p></td>
+                <td><p>{{ $product->price }}</p></td>
                 <td>
                   <!-- Attention il faut travailler les authorisations comme dans l'example du prof -->
                   {!! Form::open(['url' => route('product.destroy', $product->id), 'method' => 'delete']) !!}
@@ -34,7 +36,7 @@
         </table>
       @endif
       <a href="{{ route('product.create') }}" class="btn btn-info">Créer un product</a>
-    </div>    
+    </div>
   </div>
 </div>
 @endsection

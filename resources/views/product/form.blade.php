@@ -6,17 +6,17 @@
 </div>
 
 
-
 <div class="row" style="padding-bottom:20px;">
 	<div  class="col-sm-6 col-md-6">
 		{!! Form::label('side', 'Side', []) !!}
 		{!! Form::text('side', null, ['class'=>'form-control']) !!}
 	</div>
 	<div class="col-sm-6 col-md-6">
-	{!! Form::label('quantity', 'Quantité', []) !!}
-	{!! Form::text('quantity', null, ['class'=>'form-control']) !!}
+		{!! Form::label('quantity', 'Quantité', []) !!}
+		{!! Form::text('quantity', null, ['class'=>'form-control']) !!}
 	</div>
 </div>
+
 <div class="row"></div>
 
 <div class="row" style="padding-bottom:20px;">

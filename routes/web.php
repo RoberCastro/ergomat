@@ -36,10 +36,8 @@ Route::resource('product', 'ProductController');
 
 Route::resource('loan', 'LoanController');
 
-Route::resource('product', 'CommandeController');
+Route::resource('sale', 'SaleController');
 
-Route::resource('product', 'SaleController');
-
-
+Route::resource('commande', 'CommandeController');
 
 Route::post('store_patient', ['as' => 'store_patient', 'uses' => 'PatientController@store']);

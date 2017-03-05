@@ -2,22 +2,41 @@
 
 @section('content')
 
-    <div class="panel panel-default">
-        <div class="panel-heading">Dashboard</div>
+  <div class="panel panel-default">
+    <div class="panel-heading">Dashboard</div>
 
+    <div class="panel-body">
+      @if($products->isEmpty())
+        <p>Vous n'avez pas encore d'product.</p>
+      @else
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Côté</th>
+              <th>Prix</th>
+              <th>Suprimmer?</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($products as $product)
+              <tr>
+                <td><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></td>
+                <td><p>{{ $product->side }}</p></td>
+                <td><p>{{ $product->price }}</p></td>
+                <td>
+                  <!-- Attention il faut travailler les authorisations comme dans l'example du prof -->
+                  {!! Form::open(['url' => route('product.destroy', $product->id), 'method' => 'delete']) !!}
+                  <button type="submit" class="btn btn-danger btn-xs">Supprimer</button>
+                  {!! Form::close() !!}
 
-        <div class="panel-body">
-            You are logged in!
-            <a href="{{ route('product.index') }}" class="btn btn-info">Voir tous les produits</a>
-            <a href="{{ route('loan.index') }}" class="btn btn-info">Voir tous les prêts</a>
-
-
-            @if(Auth::user()->isadmin)
-                <a href="{{ route('admin') }}" class="btn btn-warning">Administration</a>
-            @endif
-
-        </div>
+                </td>
+              </tr>
+            @endforeach
+          </tbody>
+        </table>
+      @endif
+      <a href="{{ route('product.create') }}" class="btn btn-info">Créer un product</a>
     </div>
-
-
+  </div>
 @endsection

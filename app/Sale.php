@@ -11,8 +11,6 @@ class Sale extends Model
   ];
 
 
-
-
   // RELATIONS
   public function patient()
   {

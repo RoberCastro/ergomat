@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Mail;
 use App\Patient;
 use App\Loan;
+use App\Product;
 
 
 
@@ -30,7 +31,9 @@ class HomeController extends Controller
   */
   public function index()
   {
-    return view('home');
+    $products = Product::all();
+
+    return view('home', ['products' => $products]);
   }
   /**
   * Show the application dashboard.
