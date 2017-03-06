@@ -1,6 +1,6 @@
 
 
-<div  class="col-sm-6 col-md-6">
+<div  class="form-group">
   {!! Form::label('price', 'Prix', []) !!}
   {!! Form::text('price', null, ['class'=>'form-control']) !!}
 </div>

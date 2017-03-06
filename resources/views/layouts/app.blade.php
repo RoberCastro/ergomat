@@ -116,7 +116,7 @@
                 </span>Prêts</a>
               </h4>
             </div>
-            <div id="collapseTwo" class="panel-collapse collapse in">
+            <div id="collapseTwo" class="panel-collapse collapse">
               <div class="panel-body">
                 <table class="table">
                   <tr>
