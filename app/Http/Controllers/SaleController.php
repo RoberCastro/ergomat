@@ -61,14 +61,19 @@ class SaleController extends Controller
   {
     $sale = new Sale;
     $user = User::find(Auth::id());
+
+    $patient = Patient::where('reference', $request->patient)->get()->first();
+    //dd($patient[0]['attributes']['id']);
+
     $inputS  = $request->date_sale;
     $formatS = 'Y-m-d';
 
-    $datestart = Carbon::createFromFormat($formatS, $inputS);
+    $datesale = Carbon::createFromFormat($formatS, $inputS);
 
+    $sale->patient_id = $patient['attributes']['id'];
     $sale->price = $request->price;
-    $sale->created_by = $user->email;
     $sale->date_sale = $datesale;
+    $sale->created_by = $user->email;
 
     $sale->save();
 
@@ -84,8 +89,10 @@ class SaleController extends Controller
   public function show($id)
   {
     $sale = Sale::find($id);
+    $products = Product::all();
 
-    return view('sale.show', ['sale' => $sale]);  }
+    return view('sale.show', ['sale' => $sale, 'products' => $products]);
+  }
 
   /**
   * Show the form for editing the specified resource.

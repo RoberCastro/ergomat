@@ -93,8 +93,12 @@ class LoanController extends Controller
   public function show($id)
   {
     $loan = loan::find($id);
+    $products = Product::all();
+    $user = User::find(Auth::id());
 
-    return view('loan.show', ['loan' => $loan]);
+
+
+    return view('loan.show', ['loan' => $loan, 'products' => $products, 'user' => $user]);
   }
 
   /**
