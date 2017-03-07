@@ -13,22 +13,27 @@ class AddProductController extends Controller
     $commande = Commande::findOrFail($id);
     $product = Product::findOrFail($request->product_id);
 
-
-    // $commande->products->contains($product);
-
-    //dd( ($product->quantity) - ($request->qty_pro));
-
-
-    if ($request->qty_pro > $product->quantity ){
+    if ((int) $request->qty_pro > $product->quantity){
       return 'Pas assez de produits';
-    }else{
-
-      //$commande->products()->updateExistingPivot($product, ['quantity_comm' => $request->qty_pro]);
-      //$commande->products()->updateExistingPivot($product, [ 'quantity_comm' => $request->qty_pro ]);
-      $commande->products()->attach ($request->product_id, [ 'quantity_comm' => $request->qty_pro ]);
-      $product->quantity = ($product->quantity) - ($request->qty_pro);
-      $product->save();
     }
+
+    // The command already has the product => we update the pivot table.
+    if ($commande->products->contains($product)) {
+      $currentQty = $commande->products->find($request->product_id)->pivot->quantity_comm;
+      $commande->products()->updateExistingPivot($product->id, [ 
+        'quantity_comm' => $currentQty + $request->qty_pro
+      ]);
+
+    // Otherwise => we attach a new relationship between the command and the product.
+    } else {
+      $commande->products()->attach($request->product_id, [ 
+        'quantity_comm' => $request->qty_pro 
+      ]);
+    }
+
+    // We update the product quantity.
+    $product->quantity = ($product->quantity) - ($request->qty_pro);
+    $product->save();
 
     return redirect()->back();
   }
