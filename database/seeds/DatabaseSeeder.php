@@ -34,7 +34,8 @@ class DatabaseSeeder extends Seeder
       DB::table('loan_product')->insert(
         [
           'loan_id' => $loanIds[$index],
-          'product_id' => $productIds[$index]
+          'product_id' => $productIds[$index],
+          'quantity_loan' => $index + 2
         ]
       );
     }
@@ -54,7 +55,8 @@ class DatabaseSeeder extends Seeder
       DB::table('commande_product')->insert(
         [
           'commande_id' => $commandeIds[$index],
-          'product_id' => $productIds[$index]
+          'product_id' => $productIds[$index],
+          'quantity_comm' => $index + 2
         ]
       );
     }

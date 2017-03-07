@@ -226,10 +226,23 @@
 </div>
 
 <!-- Scripts -->
+
 <script src="/js/app.js"></script>
 <script src="/js/app_rob.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
 
+<script type="text/javascript">
+
+$(function() {
+    $('.panel-group').on('mouseenter.collapse.data-api', '[data-toggle=collapse]', function(e) {
+        var $this = $(this),
+            href, target = $this.attr('data-target') || e.preventDefault() || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //stri for ie7
+            ,
+            option = $(target).data('collapse') ? 'show' : $this.data()
+            $(target).collapse(option)
+    })
+})
+  </script>
 
 </body>
 </html>

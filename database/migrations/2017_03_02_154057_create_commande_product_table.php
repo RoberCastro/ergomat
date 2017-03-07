@@ -29,6 +29,8 @@ class CreateCommandeProductTable extends Migration
       ->onDelete('cascade')
       ->onUpdate('cascade');
 
+      $table->double('quantity_comm');
+
       $table->timestamps();
     });
   }

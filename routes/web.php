@@ -33,6 +33,7 @@ Route::resource('user', 'UserController');
 Route::resource('patient', 'PatientController');
 
 Route::resource('product', 'ProductController');
+Route::post('product/add/{commande}', 'AddProductController@commande')->name('addproduct.commande');
 
 Route::resource('loan', 'LoanController');
 

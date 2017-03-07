@@ -62,7 +62,7 @@ class SaleController extends Controller
     $sale = new Sale;
     $user = User::find(Auth::id());
 
-    $patient = Patient::where('reference', $request->patient)->get()->first();
+    $patient = Patient::where('reference', $request->patient)->first();
     //dd($patient[0]['attributes']['id']);
 
     $inputS  = $request->date_sale;
@@ -70,7 +70,7 @@ class SaleController extends Controller
 
     $datesale = Carbon::createFromFormat($formatS, $inputS);
 
-    $sale->patient_id = $patient['attributes']['id'];
+    $sale->patient_id = $patient->id;
     $sale->price = $request->price;
     $sale->date_sale = $datesale;
     $sale->created_by = $user->email;

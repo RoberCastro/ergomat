@@ -27,10 +27,12 @@ class CreateLoanProductTable extends Migration
           ->references('id')
           ->on('products')
           ->onDelete('cascade')
-          ->onUpdate('cascade'); 
+          ->onUpdate('cascade');
+
+          $table->double('quantity_loan');
 
           $table->timestamps();
-      }); 
+      });
     }
 
     /**
