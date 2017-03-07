@@ -17,7 +17,7 @@ class CommandesTableSeeder extends Seeder
       Commande::create([
 
         'price' => 2500 + $i*10,
-        'date_commande' => '25.02.2017',
+        'date_commande' => '2017-02-25',
       ]);
     }
 
@@ -25,7 +25,7 @@ class CommandesTableSeeder extends Seeder
       Commande::create([
 
         'price' => 1000 + $i*10,
-        'date_commande' => '20.02.2013',
+        'date_commande' => '2013-02-20',
       ]);
     }
   }

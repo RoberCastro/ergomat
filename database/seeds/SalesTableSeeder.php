@@ -19,7 +19,7 @@ class SalesTableSeeder extends Seeder
         'price' => 2500 + $i*10,
         'created_by' => 'admin@gmail.com',
         'modified_by' => 'basic@gmail.com',
-        'date_sale' => '25.02.2017',
+        'date_sale' => '2017-02-25',
       ]);
     }
 
@@ -30,7 +30,7 @@ class SalesTableSeeder extends Seeder
         'price' => 2500 + $i*10,
         'created_by' => 'admin@gmail.com',
         'modified_by' => 'basic@gmail.com',
-        'date_sale' => '25.10.2014',
+        'date_sale' => '2014-10-25',
       ]);
     }
   }
