@@ -30,6 +30,6 @@ class Commande extends Model
 
   public function products()
   {
-    return $this->belongsToMany('App\Product')->withPivot('quantity_comm');
+    return $this->belongsToMany('App\Product')->withPivot('quantity_comm')->withTimestamps();
   }
 }

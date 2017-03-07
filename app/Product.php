@@ -20,7 +20,7 @@ class Product extends Model
 	}
 	public function commandes()
 	{
-		return $this->belongsToMany('App\Commande')->withPivot('quantity_comm');
+		return $this->belongsToMany('App\Commande')->withPivot('quantity_comm')->withTimestamps();
 	}
 
 
