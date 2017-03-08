@@ -15,7 +15,6 @@
               <th>ID</th>
               <th>Date de start</th>
               <th>Date de fin</th>
-              <th>Produits</th>
               <th>Option</th>
             </tr>
           </thead>
@@ -26,14 +25,7 @@
                 <td><p>{{ $loan->date_start }}</p></td>
                 <td><p>{{ $loan->date_end }}</p></td>
                 <td>
-                  @foreach($loan->products as $product)
-                    <span class="label label-success">{{ $product->name }}</span>
-                  @endforeach
-                </td>
-                <td>
-                  {!! Form::open(['url' => route('loan.destroy', $loan->id), 'method' => 'delete']) !!}
-                  <button type="submit" class="btn btn-danger btn-xs">Supprimer</button>
-                  {!! Form::close() !!}
+                  <a role="button" class="btn btn-info" href="{{ route('loan.show', $loan->id) }}">Voir</a>
                 </td>
               </tr>
             @endforeach
