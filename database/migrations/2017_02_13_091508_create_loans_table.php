@@ -6,39 +6,39 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLoansTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
+  /**
+  * Run the migrations.
+  *
+  * @return void
+  */
+  public function up()
+  {
 
-        Schema::create('loans', function (Blueprint $table) {
-            $table->increments('id');
+    Schema::create('loans', function (Blueprint $table) {
+      $table->increments('id');
 
-            $table->integer('patient_id')->unsigned();
-            $table->foreign('patient_id')
-            ->references('id')
-            ->on('patients')
-            ->onDelete('restrict')
-            ->onUpdate('restrict');
+      $table->integer('patient_id')->unsigned();
+      $table->foreign('patient_id')
+      ->references('id')
+      ->on('patients')
+      ->onDelete('restrict')
+      ->onUpdate('restrict');
 
-            $table->date('date_start')->nullable();
-            $table->date('date_end')->nullable();
-            $table->string('created_by')->nullable();
-            $table->string('modified_by')->nullable();
-            $table->timestamps();
-        });
-    }
+      $table->date('date_start')->nullable();
+      $table->date('date_end')->nullable();
+      $table->string('created_by')->nullable();
+      $table->string('modified_by')->nullable();
+      $table->timestamps();
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::drop('loans');
-    }
+  /**
+  * Reverse the migrations.
+  *
+  * @return void
+  */
+  public function down()
+  {
+    Schema::drop('loans');
+  }
 }
