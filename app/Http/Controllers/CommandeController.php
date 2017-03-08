@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CommandeRequest;
 
 use App\User;
 use App\Commande;
@@ -56,7 +57,7 @@ class CommandeController extends Controller
   * @param  \Illuminate\Http\Request  $request
   * @return \Illuminate\Http\Response
   */
-  public function store(Request $request)
+  public function store(CommandeRequest $request)
   {
     $commande = new Commande;
     $user = User::find(Auth::id());
@@ -108,7 +109,7 @@ class CommandeController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function update(Request $request, $id)
+  public function update(CommandeRequest $request, $id)
   {
     $commande = Commande::find($id);
     $commande->update($request->all());
