@@ -1,8 +1,7 @@
-<?php
 
+<?php
 use Illuminate\Database\Seeder;
 use App\Product;
-
 class ProductsTableSeeder extends Seeder
 {
   /**
@@ -20,11 +19,10 @@ class ProductsTableSeeder extends Seeder
         'description' => 'Ceci est la drescription du produit',
         'side' => 'Gauche',
         'price' => 2500,
-        'pro_date_status' => '25.02.2017',
+        'pro_date_status' => '2017-02-25',
         'quantity' => 3 + $i,
       ]);
     }
-
     for ($i=0; $i < 3; $i++) {
       Product::create([
         'categorie_id' => 1,
@@ -33,7 +31,7 @@ class ProductsTableSeeder extends Seeder
         'description' => 'Ceci est la drescription du produit',
         'side' => 'Droite',
         'price' => 250,
-        'pro_date_status' => '25.02.2017',
+        'pro_date_status' => '2017-02-25',
         'quantity' => 10 + $i,
       ]);
     }
