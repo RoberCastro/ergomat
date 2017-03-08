@@ -33,9 +33,12 @@ Route::resource('user', 'UserController');
 Route::resource('patient', 'PatientController');
 
 Route::resource('product', 'ProductController');
-Route::post('product/add/{commande}', 'AddProductController@commande')->name('addproduct.commande');
 
+Route::post('product/add/{commande}', 'AddProductController@commande')->name('addproduct.commande');
 Route::get('product/remove/{commande}/{product}/{quantity}', 'AddProductController@remove_product')->name('addproduct.remove_product');
+
+Route::post('product/add/{sale}', 'AddProductController@sale')->name('addproduct.sale');
+Route::get('product/remove/{sale}/{product}/{quantity}', 'AddProductController@remove_product_sale')->name('addproduct.remove_product');
 
 Route::resource('loan', 'LoanController');
 
