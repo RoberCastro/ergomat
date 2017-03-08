@@ -52,9 +52,15 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
   <div class="panel-heading">Choisissez un produit</div>
   <div class="panel-body">
     <div class="container" style="width: 100%;" >
-      <div class="alert alert-danger info" style="display:none;">
-        <ul></ul>
-      </div>
+      @if ($errors->any())
+        <div class="alert alert-danger info">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
       <div class="row">
         <table id="table_product" class="display nowrap" cellspacing="0" width="100%">
           <thead>

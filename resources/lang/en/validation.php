@@ -110,6 +110,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'qty_pro' => 'quantity'
+    ],
 
 ];
