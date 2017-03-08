@@ -21,13 +21,13 @@ class AddProductController extends Controller
     // The command already has the product => we update the pivot table.
     if ($commande->products->contains($product)) {
       $currentQty = $commande->products->find($request->product_id)->pivot->quantity_comm;
-      $commande->products()->updateExistingPivot($product->id, [
+      $commande->products()->updateExistingPivot($product->id, [ 
         'quantity_comm' => $currentQty + $request->qty_pro
       ]);
 
     // Otherwise => we attach a new relationship between the command and the product.
     } else {
-      $commande->products()->attach($request->product_id, [
+      $commande->products()->attach($request->product_id, [ 
         'quantity_comm' => $request->qty_pro
       ]);
     }
@@ -35,6 +35,11 @@ class AddProductController extends Controller
     // We update the product quantity.
     $product->quantity = ($product->quantity) - ($request->qty_pro);
     $product->save();
+
+    // We update the price
+    $commande->price = $commande->price + ($product->price * $request->qty_pro);
+    $commande->save();
+
     return redirect()->back();
   }
 
@@ -44,8 +49,12 @@ class AddProductController extends Controller
     $commande = Commande::findOrFail($id_commande);
     $product = Product::findOrFail($id_product);
 
+
     $product->quantity = ($product->quantity) + $quantity;
     $product->save();
+
+    $commande->price = $commande->price - ($product->price * $quantity);
+    $commande->save();
 
     $commande->products()->detach($id_product);
 
