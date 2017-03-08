@@ -62,14 +62,15 @@ class CommandeController extends Controller
     $user = User::find(Auth::id());
     $products = Product::all();
 
-
-    $commande->price = $request->price;
+    if($request->price){
+      $commande->price = $request->price;
+    }
     $commande->created_by = $user->email;
     $commande->date_commande = $request->date_commande;
 
     $commande->save();
 
-    return view('commande.show', ['commande' => $commande, 'products' => $products]);
+    return redirect()->route('commande.show', [ 'id' => $commande->id, 'commande' => $commande, 'products' => $products ]);
   }
 
   /**
@@ -82,6 +83,7 @@ class CommandeController extends Controller
   {
     $commande = Commande::find($id);
     $products = Product::all();
+
 
     return view('commande.show', ['commande' => $commande, 'products' => $products]);
   }

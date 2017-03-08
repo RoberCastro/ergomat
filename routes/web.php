@@ -42,5 +42,7 @@ Route::resource('loan', 'LoanController');
 Route::resource('sale', 'SaleController');
 
 Route::resource('commande', 'CommandeController');
+Route::get('commande/show/{commande}', 'CommandeController@show');
+
 
 Route::post('store_patient', ['as' => 'store_patient', 'uses' => 'PatientController@store']);

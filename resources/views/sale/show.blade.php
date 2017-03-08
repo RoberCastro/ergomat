@@ -52,6 +52,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
               </tr>
             </thead>
             <tbody id="product-list" name="product-list">
+              
               @foreach($products as $products)
                 <tr id="product{{ $products->id }}">
 

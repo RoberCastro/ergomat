@@ -61,6 +61,8 @@ class SaleController extends Controller
   {
     $sale = new Sale;
     $user = User::find(Auth::id());
+    $products = Product::all();
+
 
     $patient = Patient::where('reference', $request->patient)->first();
     //dd($patient[0]['attributes']['id']);
@@ -77,7 +79,7 @@ class SaleController extends Controller
 
     $sale->save();
 
-    return view('sale.show', ['sale' => $sale]);
+    return view('sale.show', ['sale' => $sale, 'products' => $products]);
   }
 
   /**

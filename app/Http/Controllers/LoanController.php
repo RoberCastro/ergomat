@@ -59,11 +59,16 @@ class LoanController extends Controller
   {
     $loan = new Loan;
     $user = User::find(Auth::id());
+    $products = Product::all();
+
     $inputS  = $request->date_start;
     $formatS = 'Y-m-d';
 
+    $patient = Patient::where('reference', $request->patient)->first();
+
     $datestart = Carbon::createFromFormat($formatS, $inputS);
 
+    $loan->patient_id = $patient->id;
     $loan->created_by = $user->email;
     $loan->date_start = $datestart;
 
@@ -81,7 +86,7 @@ class LoanController extends Controller
 
     //$loan->products()->attach($request->product_list);
 
-    return view('loan.show', ['loan' => $loan]);
+    return view('loan.show', ['loan' => $loan, 'products' => $products]);
   }
 
   /**
