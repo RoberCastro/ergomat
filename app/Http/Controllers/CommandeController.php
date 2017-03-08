@@ -60,7 +60,6 @@ class CommandeController extends Controller
   {
     $commande = new Commande;
     $user = User::find(Auth::id());
-    $products = Product::all();
 
 
     $commande->price = $request->price;
@@ -69,7 +68,7 @@ class CommandeController extends Controller
 
     $commande->save();
 
-    return view('commande.show', ['commande' => $commande, 'products' => $products]);
+    return redirect()->route('commande.show', [ 'id' => $commande->id ]);
   }
 
   /**
