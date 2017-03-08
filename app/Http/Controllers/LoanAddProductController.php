@@ -9,7 +9,7 @@ use App\Http\Requests\AddProductRequest;
 
 class LoanAddProductController extends Controller
 {
-  public function loan($id, Request $request)
+  public function loan($id, AddProductRequest $request)
   {
 
       $loan = Loan::findOrFail($id);
