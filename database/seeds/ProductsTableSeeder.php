@@ -1,8 +1,7 @@
-<?php
 
+<?php
 use Illuminate\Database\Seeder;
 use App\Product;
-
 class ProductsTableSeeder extends Seeder
 {
   /**
@@ -24,7 +23,6 @@ class ProductsTableSeeder extends Seeder
         'quantity' => 3 + $i,
       ]);
     }
-
     for ($i=0; $i < 3; $i++) {
       Product::create([
         'categorie_id' => 1,

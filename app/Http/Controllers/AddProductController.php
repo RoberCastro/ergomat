@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Commande;
 use App\Product;
-
 class AddProductController extends Controller
 {
   public function commande($id, Request $request)
@@ -34,7 +31,6 @@ class AddProductController extends Controller
     // We update the product quantity.
     $product->quantity = ($product->quantity) - ($request->qty_pro);
     $product->save();
-
     return redirect()->back();
   }
 }
