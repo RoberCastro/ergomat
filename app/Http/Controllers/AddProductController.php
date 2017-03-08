@@ -28,7 +28,9 @@ class AddProductController extends Controller
 
       // We update the product quantity.
       $product->quantity = ($product->quantity) - ($request->qty_pro);
+      $commande->price = $commande->price + ($product->price * $request->qty_pro);
       $product->save();
+      $commande->save();
       return redirect()->back();
     }else{
       alert("Oops... Something went wrong!");
@@ -43,8 +45,12 @@ class AddProductController extends Controller
     $commande = Commande::findOrFail($id_commande);
     $product = Product::findOrFail($id_product);
 
+
     $product->quantity = ($product->quantity) + $quantity;
     $product->save();
+
+    $commande->price = $commande->price - ($product->price * $quantity);
+    $commande->save();
 
     $commande->products()->detach($id_product);
 
