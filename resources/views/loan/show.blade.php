@@ -73,11 +73,11 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
                   {!! Form::open(['url' => route('addproduct.loanpro', $loan->id), 'method' => 'post']) !!}
                   {!! Form::hidden('product_id', $product->id) !!}
                   <td>{!! Form::number('qty_pro', 1, array('id' => 'qty_pro', 'class' => 'qty_pro', 'style'=>'max-width: 40px;')) !!}</td>
-
+                  
                   @if ($product->quantity === 0.00)
                     <td><p>Produit fini</p></td>
                   @else
-                    <td><button type="submit" class="btn-success btn-sm ajout" id="btn-ajout-pro-commande" data-la="{{ $product->quantity }}"><i class="fa fa-plus-circle"></i> Ajouter à la commande</button></td>
+                    <td><button type="submit" class="btn-success btn-sm ajout_loan" id="btn-ajout-pro-loan" data-la="{{ $product->quantity }}"><i class="fa fa-plus-circle"></i> Ajouter au prêt</button></td>
                   @endif
 
                   {!! Form::close() !!}

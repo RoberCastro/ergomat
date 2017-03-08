@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
   var info       = $('.info');
@@ -78,7 +77,7 @@ $(document).ready(function(){
     }
   });
 
-  $('.delete_pro_sal').click(function(evt){
+  $('.delete_pro_loan').click(function(evt){
     var produit = $(evt.target).attr("data-product");
     var loan = $(evt.target).attr("data-loan");
     var quantity = $(evt.target).attr("data-quantity");

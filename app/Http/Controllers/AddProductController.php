@@ -107,17 +107,12 @@ class AddProductController extends Controller
     $loan = Loan::findOrFail($id_loan);
     $product = Product::findOrFail($id_product);
 
-
     $product->quantity = ($product->quantity) + $quantity;
     $product->save();
-
-    $loan->price = $loan->price - ($product->price * $quantity);
-    $loan->save();
 
     $loan->products()->detach($id_product);
 
     return redirect()->back();
-
 
   }
 }
