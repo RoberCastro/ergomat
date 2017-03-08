@@ -14,6 +14,7 @@ class AddProductController extends Controller
     $commande = Commande::findOrFail($id);
     $product = Product::findOrFail($request->product_id);
 
+
     // If the quantity requested is higher than available => we redirect with errors.
     if ($request->qty_pro > $product->quantity) {
       return redirect()->back()->withErrors([
@@ -65,9 +66,8 @@ class AddProductController extends Controller
 
   }
 
-  public function loanpro($id, Request $request)
+  public function loanpro($id, AddProductRequest $request)
   {
-      dd($id);
 
       $loan = Loan::findOrFail($id);
       $product = Product::findOrFail($request->product_id);
@@ -78,10 +78,9 @@ class AddProductController extends Controller
           'qty_pro' => 'The quantity requested is more than available.'
         ]);
       }
-
-      // The command already has the product => we update the pivot table.
+     // The command already has the product => we update the pivot table.
       if ($loan->products->contains($product)) {
-        $currentQty = $loan->products->find($request->product_id)->pivot->quantity_comm;
+        $currentQty = $loan->products->find($request->product_id)->pivot->quantity_loan;
         $loan->products()->updateExistingPivot($product->id, [
           'quantity_loan' => $currentQty + $request->qty_pro
         ]);
@@ -98,7 +97,6 @@ class AddProductController extends Controller
       $product->save();
 
       return redirect()->back();
-
   }
 
   public function remove_product_loan($id_loan, $id_product, $quantity)
@@ -113,6 +111,5 @@ class AddProductController extends Controller
     $loan->products()->detach($id_product);
 
     return redirect()->back();
-
   }
 }
