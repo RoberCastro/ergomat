@@ -70,10 +70,10 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 
                   <td>{{ $product->name }} - {{ $product->id }}</td>
                   <td>  <label> {{ $product->quantity }} </label> </td>
-                  {!! Form::open(['url' => route('addproduct.loanpro', $loan->id), 'method' => 'post']) !!}
+                  {!! Form::open(['url' => route('loanaddproduct.loan', $loan->id), 'method' => 'post']) !!}
                   {!! Form::hidden('product_id', $product->id) !!}
-                  <td>{!! Form::number('qty_pro', 1, array('id' => 'qty_pro', 'class' => 'qty_pro', 'style'=>'max-width: 40px;')) !!}</td>
-                  
+                  <td>{!! Form::number('machin', 1, array('id' => 'machin', 'class' => 'machin', 'style'=>'max-width: 40px;')) !!}</td>
+
                   @if ($product->quantity === 0.00)
                     <td><p>Produit fini</p></td>
                   @else
