@@ -31,6 +31,20 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
           {{ $sale->created_at->format('l jS \\of F Y') }}
         </div>
       </div>
+      <p>Prix de la sale : {{ $sale->price }}   </p>
+      <p>
+        <strong>Products:</strong>
+        <ul>
+          @if($sale->price != 0)
+            @foreach($sale->products as $product)
+            <li>{{ $product->name }} - {{ $product->id }} - {{ $product->pivot->quantity_comm }} - {{ $product->price }} CHF <button type="submit" class="btn btn-danger btn-xs delete_pro_sal" data-sale="{{ $sale->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_comm }}" > X</button></li>
+            @endforeach
+          @else
+            "Pas des produits"
+          @endif
+
+        </ul>
+      </p>
     </div>
   </div>
 
@@ -42,30 +56,40 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
           <ul></ul>
         </div>
         <div class="row">
-          <table id="example" class="display nowrap" cellspacing="0" width="100%">
+          <table id="table_product" class="display nowrap" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th>Nom du produit</th>
+                <th>Nom du produit - Id</th>
+                <th>Q</th>
+                <th>Qté</th>
                 <th>Ajout</th>
                 <th>Prix</th>
-
               </tr>
             </thead>
             <tbody id="product-list" name="product-list">
-              
-              @foreach($products as $products)
-                <tr id="product{{ $products->id }}">
 
-                  <td>{{ $products->name }}</td>
+              @foreach($products as $product)
+              <tr id="product{{ $product->id }}">
 
-                  {!! Form::open(['url' => route('product.show', $products->id), 'method' => 'delete']) !!}
-                  <td><button type="submit" class="btn-success btn-sm" id="btn-ajout-pro-pret"><i class="fa fa-plus-circle"></i> Ajouter à la vente</button></td>
-                  {!! Form::close() !!}
 
-                  <td>{{ $products->price }}</td>
+                <td>{{ $product->name }} - {{ $product->id }}</td>
+                <td>  <label> {{ $product->quantity }} </label> </td>
+                {!! Form::open(['url' => route('addproduct.sale', $sale->id), 'method' => 'post']) !!}
+                {!! Form::hidden('product_id', $product->id) !!}
+                <td>{!! Form::number('qty_pro', 1, array('id' => 'qty_pro', 'class' => 'qty_pro', 'style'=>'max-width: 40px;')) !!}</td>
 
-                </tr>
+                @if ($product->quantity === 0.00)
+                <td>{!! Form::label('date_sale', 'Produit fini', []) !!}</td>
+                @else
+                <td><button type="submit" class="btn-success btn-sm ajout" id="btn-ajout-pro-sale" data-la="{{ $product->quantity }}"><i class="fa fa-plus-circle"></i> Ajouter à la sale</button></td>
+                @endif
+                <td>{{ $product->price }}</td>
+
+                {!! Form::close() !!}
+
+              </tr>
               @endforeach
+
             </tbody>
           </table>
         </div>
@@ -78,6 +102,6 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  $('#example').DataTable();
+  $('#table_product').DataTable();
 });
 </script>

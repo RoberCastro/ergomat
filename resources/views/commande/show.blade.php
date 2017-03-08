@@ -44,9 +44,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
         {{ $commande->created_at->format('l jS \\of F Y') }}
       </div>
     </div>
-
   </div>
-
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">Choisissez un produit</div>

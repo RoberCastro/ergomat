@@ -78,8 +78,7 @@ class SaleController extends Controller
     $sale->created_by = $user->email;
 
     $sale->save();
-
-    return view('sale.show', ['sale' => $sale, 'products' => $products]);
+    return redirect()->route('sale.show', [ 'id' => $sale->id, 'sale' => $sale, 'products' => $products ]);
   }
 
   /**
@@ -123,14 +122,14 @@ class SaleController extends Controller
 
     return view('sale.show', ['sale' => $sale]);  }
 
-  /**
-  * Remove the specified resource from storage.
-  *
-  * @param  int  $id
-  * @return \Illuminate\Http\Response
-  */
-  public function destroy($id)
-  {
-    //
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy($id)
+    {
+      //
+    }
   }
-}
