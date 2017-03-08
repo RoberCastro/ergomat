@@ -24,7 +24,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
     <p>Modifié par :
       {{ $commande->modified_by }} en: {{ Carbon\Carbon::parse($commande->updated_at)->format('d-M-Y')  }}
     </p>
-    <p>Prix de la commande : {{ $commande->price }}   </p>
+      <p>Prix de la commande : {{ $commande->price }}   </p>
     <p>
       <strong>Products:</strong>
       <ul>

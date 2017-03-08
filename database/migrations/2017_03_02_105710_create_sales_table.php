@@ -23,7 +23,7 @@ class CreateSalesTable extends Migration
       ->onDelete('restrict')
       ->onUpdate('restrict');
 
-      $table->double('price');
+      $table->double('price')->default(0.00);
       $table->date('date_sale')->nullable();
       $table->string('created_by')->nullable();
       $table->string('modified_by')->nullable();

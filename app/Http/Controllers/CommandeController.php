@@ -85,7 +85,6 @@ class CommandeController extends Controller
     $commande = Commande::find($id);
     $products = Product::all();
 
-
     return view('commande.show', ['commande' => $commande, 'products' => $products]);
   }
 

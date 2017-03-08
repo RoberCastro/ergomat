@@ -3,8 +3,10 @@ namespace App\Http\Controllers;
 use App\Product;
 
 use App\Commande;
+use App\Loan;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddProductRequest;
+
 class AddProductController extends Controller
 {
   public function commande($id, AddProductRequest $request)
@@ -63,32 +65,32 @@ class AddProductController extends Controller
 
   }
 
-  public function sale($id, Request $request)
+  public function loan($id, Request $request)
   {
-    $sale = Sale::findOrFail($id);
+    $loan = Loan::findOrFail($id);
     $product = Product::findOrFail($request->product_id);
 
     if (!((int) $request->qty_pro > $product->quantity)){
 
       // The command already has the product => we update the pivot table.
-      if ($sale->products->contains($product)) {
-        $currentQty = $sale->products->find($request->product_id)->pivot->quantity_comm;
-        $sale->products()->updateExistingPivot($product->id, [
+      if ($loan->products->contains($product)) {
+        $currentQty = $loan->products->find($request->product_id)->pivot->quantity_comm;
+        $loan->products()->updateExistingPivot($product->id, [
           'quantity_comm' => $currentQty + $request->qty_pro
         ]);
 
         // Otherwise => we attach a new relationship between the command and the product.
       } else {
-        $sale->products()->attach($request->product_id, [
+        $loan->products()->attach($request->product_id, [
           'quantity_comm' => $request->qty_pro
         ]);
       }
 
       // We update the product quantity.
       $product->quantity = ($product->quantity) - ($request->qty_pro);
-      $sale->price = $sale->price + ($product->price * $request->qty_pro);
+      $loan->price = $loan->price + ($product->price * $request->qty_pro);
       $product->save();
-      $sale->save();
+      $loan->save();
       return redirect()->back();
     }else{
       alert("Oops... Something went wrong!");
@@ -96,20 +98,20 @@ class AddProductController extends Controller
 
   }
 
-  public function remove_product_sale($id_sale, $id_product, $quantity)
+  public function remove_product_loan($id_loan, $id_product, $quantity)
   {
     //dd($quantity);
-    $sale = Sale::findOrFail($id_sale);
+    $loan = Loan::findOrFail($id_loan);
     $product = Product::findOrFail($id_product);
 
 
     $product->quantity = ($product->quantity) + $quantity;
     $product->save();
 
-    $sale->price = $sale->price - ($product->price * $quantity);
-    $sale->save();
+    $loan->price = $loan->price - ($product->price * $quantity);
+    $loan->save();
 
-    $sale->products()->detach($id_product);
+    $loan->products()->detach($id_product);
 
     return redirect()->back();
 

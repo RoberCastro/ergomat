@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SaleRequest;
 
 use App\User;
 use App\Sale;
@@ -66,15 +67,13 @@ class SaleController extends Controller
 
     $patient = Patient::where('reference', $request->patient)->first();
     //dd($patient[0]['attributes']['id']);
-
-    $inputS  = $request->date_sale;
-    $formatS = 'Y-m-d';
-
-    $datesale = Carbon::createFromFormat($formatS, $inputS);
+    if($request->price){
+      $sale->price = $request->price;
+    }
 
     $sale->patient_id = $patient->id;
     $sale->price = $request->price;
-    $sale->date_sale = $datesale;
+    $sale->date_sale = $request->date_sale;
     $sale->created_by = $user->email;
 
     $sale->save();
@@ -87,7 +86,7 @@ class SaleController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function show($id)
+  public function show(Request $request, $id)
   {
     $sale = Sale::find($id);
     $products = Product::all();

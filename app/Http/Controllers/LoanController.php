@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoanRequest;
+
 
 use App\Loan;
 use App\User;
@@ -60,17 +62,11 @@ class LoanController extends Controller
     $loan = new Loan;
     $user = User::find(Auth::id());
     $products = Product::all();
-
-    $inputS  = $request->date_start;
-    $formatS = 'Y-m-d';
-
     $patient = Patient::where('reference', $request->patient)->first();
-
-    $datestart = Carbon::createFromFormat($formatS, $inputS);
 
     $loan->patient_id = $patient->id;
     $loan->created_by = $user->email;
-    $loan->date_start = $datestart;
+    $loan->date_start = $request->date_start;
 
     if($request->date_end == ""){
 
@@ -82,11 +78,8 @@ class LoanController extends Controller
       $loan->date_end = $request->date_end;
     }
     $loan->save();
-    //    $loan->date_end = Carbon::parse($request->date_end)->format('d/m/Y');
 
-    //$loan->products()->attach($request->product_list);
-
-    return view('loan.show', ['loan' => $loan, 'products' => $products]);
+    return redirect()->route('loan.show', [ 'id' => $loan->id, 'commande' => $loan, 'products' => $products ]);
   }
 
   /**
@@ -95,13 +88,11 @@ class LoanController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function show($id)
+  public function show(Request $request, $id)
   {
     $loan = loan::find($id);
     $products = Product::all();
     $user = User::find(Auth::id());
-
-
 
     return view('loan.show', ['loan' => $loan, 'products' => $products, 'user' => $user]);
   }

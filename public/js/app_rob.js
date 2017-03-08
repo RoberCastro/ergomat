@@ -80,7 +80,7 @@ $(document).ready(function(){
 
   $('.delete_pro_sal').click(function(evt){
     var produit = $(evt.target).attr("data-product");
-    var sale = $(evt.target).attr("data-sale");
+    var loan = $(evt.target).attr("data-loan");
     var quantity = $(evt.target).attr("data-quantity");
     var x = confirm("Are you sure you want to delete?");
     if(x)
@@ -88,7 +88,7 @@ $(document).ready(function(){
       $.ajax({
         type: "GET",
         headers: { 'X-XSRF-TOKEN' : $_token },
-        url: '../product/remove' + '/' + sale  + '/' + produit + '/' + quantity,
+        url: '../product/remove' + '/' + loan  + '/' + produit + '/' + quantity,
         success: function (data) {
           console.log("Success");
           location.reload();
