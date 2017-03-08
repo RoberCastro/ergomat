@@ -60,18 +60,16 @@ class CommandeController extends Controller
   {
     $commande = new Commande;
     $user = User::find(Auth::id());
-    $inputS  = $request->date_commande;
-    $formatS = 'Y-m-d';
+    $products = Product::all();
 
-    $datestart = Carbon::createFromFormat($formatS, $inputS);
 
     $commande->price = $request->price;
     $commande->created_by = $user->email;
-    $commande->date_commande = $datecommande;
+    $commande->date_commande = $request->date_commande;
 
     $commande->save();
 
-    return view('commande.show', ['commande' => $commande]);
+    return view('commande.show', ['commande' => $commande, 'products' => $products]);
   }
 
   /**
@@ -84,9 +82,6 @@ class CommandeController extends Controller
   {
     $commande = Commande::find($id);
     $products = Product::all();
-
-    //$commande->products()->sync($request->product_list);
-
 
     return view('commande.show', ['commande' => $commande, 'products' => $products]);
   }

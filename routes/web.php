@@ -35,6 +35,8 @@ Route::resource('patient', 'PatientController');
 Route::resource('product', 'ProductController');
 Route::post('product/add/{commande}', 'AddProductController@commande')->name('addproduct.commande');
 
+Route::get('product/remove/{commande}/{product}/{quantity}', 'AddProductController@remove_product')->name('addproduct.remove_product');
+
 Route::resource('loan', 'LoanController');
 
 Route::resource('sale', 'SaleController');
