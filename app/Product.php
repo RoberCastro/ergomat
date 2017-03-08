@@ -16,7 +16,7 @@ class Product extends Model
 
 	public function loans()
 	{
-		return $this->belongsToMany('App\Loan');
+		return $this->belongsToMany('App\Loan')->withPivot('quantity_loan')->withTimestamps();
 	}
 	public function commandes()
 	{

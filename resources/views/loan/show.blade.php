@@ -23,6 +23,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
       </p>
       <p>Crée par :
         {{ $loan->created_by }}
+        // Pour le patient n° : {{ $patient->reference }}
       </p>
       <p>Modifié par :
         {{ $loan->modified_by }} en: {{ Carbon\Carbon::parse($loan->updated_at)->format('d-M-Y')  }}
@@ -31,10 +32,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
         <strong>Products:</strong>
         <ul>
           @foreach($loan->products as $product)
-            <li>{{ $product->name }}  - {{ $product->id }}          <button type="submit" class="btn btn-danger btn-xs delete_pro_loan" data-loan="{{ $loan->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_loan }}" >  X </button></li>
-            <li>
-               - {{ $product->pivot->quantity_loan }}
-            </li>
+            <li>{{ $product->name }}  - {{ $product->id }} - {{ $product->pivot->quantity_loan }} <button type="submit" class="btn btn-danger btn-xs delete_pro_loan" data-loan="{{ $loan->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_loan }}" >  X </button></li>
           @endforeach
         </ul>
       </p>

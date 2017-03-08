@@ -79,7 +79,9 @@ class LoanController extends Controller
     }
     $loan->save();
 
-    return redirect()->route('loan.show', [ 'id' => $loan->id, 'commande' => $loan, 'products' => $products ]);
+    //dd($patient);
+
+    return redirect()->route('loan.show', [ 'id' => $loan->id, 'commande' => $loan, 'products' => $products, 'patient' => $patient ]);
   }
 
   /**
@@ -93,8 +95,10 @@ class LoanController extends Controller
     $loan = loan::find($id);
     $products = Product::all();
     $user = User::find(Auth::id());
+    $patient = Patient::where('id', $loan->patient_id)->first();
+    //dd($patient);
 
-    return view('loan.show', ['loan' => $loan, 'products' => $products, 'user' => $user]);
+    return view('loan.show', ['loan' => $loan, 'products' => $products, 'user' => $user, 'patient' => $patient]);
   }
 
   /**

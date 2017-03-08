@@ -65,9 +65,9 @@ class AddProductController extends Controller
 
   }
 
-  public function loanpro($id, AddProductRequest $request)
+  public function loanpro($id, Request $request)
   {
-      //dd($id);
+      dd($id);
 
       $loan = Loan::findOrFail($id);
       $product = Product::findOrFail($request->product_id);
