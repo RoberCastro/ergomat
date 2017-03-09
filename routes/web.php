@@ -41,6 +41,7 @@ Route::post('produit/ajout/{loan}', 'LoanAddProductController@loan')->name('loan
 Route::get('produit/quite/{loan}/{product}/{quantity}', 'LoanAddProductController@remove')->name('loanaddproduct.remove');
 
 Route::resource('loan', 'LoanController');
+Route::get('loan/{load}/pdf', 'LoanController@pdf')->name('loan.pdf');
 
 Route::resource('sale', 'SaleController');
 
