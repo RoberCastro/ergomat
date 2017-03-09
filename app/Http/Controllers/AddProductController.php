@@ -37,8 +37,8 @@ class AddProductController extends Controller
     }
 
     // We update the product quantity.
-    $product->quantity = ($product->quantity) - ($request->qty_pro);
-    $product->save();
+    // $product->quantity = ($product->quantity) - ($request->qty_pro);
+    // $product->save();
 
     // We update the price
     $commande->price = $commande->price + ($product->price * $request->qty_pro);
@@ -54,8 +54,8 @@ class AddProductController extends Controller
     $product = Product::findOrFail($id_product);
 
 
-    $product->quantity = ($product->quantity) + $quantity;
-    $product->save();
+    // $product->quantity = ($product->quantity) + $quantity;
+    // $product->save();
 
     $commande->price = $commande->price - ($product->price * $quantity);
     $commande->save();

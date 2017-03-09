@@ -33,10 +33,10 @@ class CreateProductsTable extends Migration
 
             $table->string('name');
             $table->text('description');
-            $table->string('side');
+            $table->string('side')->nullable();
             $table->double('price');
             $table->date('pro_date_status');
-            $table->double('quantity');
+            $table->double('quantity')->nullable();
             $table->timestamps();
         });
    }

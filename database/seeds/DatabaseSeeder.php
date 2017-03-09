@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
     $loanIds      = DB::table('loans')->pluck('id');
     $productIds      = DB::table('products')->pluck('id');
     $commandeIds      = DB::table('commandes')->pluck('id');
+    $commandeIds      = DB::table('sales')->pluck('id');
     $userIds      = DB::table('users')->pluck('id');
 
     //Seed user_role table with 20 entries
@@ -57,6 +58,16 @@ class DatabaseSeeder extends Seeder
           'commande_id' => $commandeIds[$index],
           'product_id' => $productIds[$index],
           'quantity_comm' => $index + 2
+        ]
+      );
+    }
+    foreach ((range(0, 3)) as $index)
+    {
+      DB::table('loan_product')->insert(
+        [
+          'loan_id' => $saleIds[$index],
+          'product_id' => $productIds[$index],
+          'quantity_loan' => $index + 2
         ]
       );
     }

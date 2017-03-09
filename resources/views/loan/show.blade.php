@@ -32,7 +32,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
         <strong>Products:</strong>
         <ul>
           @foreach($loan->products as $product)
-            <li>{{ $product->name }}  - {{ $product->id }} - {{ $product->pivot->quantity_loan }} <button type="submit" class="btn btn-danger btn-xs delete_pro_loan" data-loan="{{ $loan->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_loan }}" >  X </button></li>
+              <li>{{ $product->name }} - Qté : {{ $product->pivot->quantity_comm }} - Prix : {{ $product->price }} <button type="submit" class="btn btn-danger btn-xs delete_pro_loan" data-loan="{{ $loan->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_loan }}" >  X </button></li>
           @endforeach
         </ul>
       </p>
@@ -71,7 +71,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
                 <tr id="product{{ $product->id }}">
 
 
-                  <td>{{ $product->name }} - {{ $product->id }}</td>
+                  <td>{{ $product->name }} </td>
                   <td><p>{{ $product->categorie_id }}</p></td>
                   <td><p>{{ $product->statu_id }}</p></td>
                   <td>  <label> {{ $product->quantity }} </label> </td>

@@ -31,7 +31,7 @@ class Product extends Model
 
 	public function sales()
 	{
-		return $this->belongsTo('App\Sale');
+		return $this->belongsToMany('App\Sale')->withPivot('quantity_sale')->withTimestamps();
 	}
 	public function categories()
 	{

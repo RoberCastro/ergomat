@@ -30,7 +30,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
         <ul>
           @if($commande->price != 0)
             @foreach($commande->products as $product)
-              <li>{{ $product->name }} - {{ $product->id }} - {{ $product->pivot->quantity_comm }} - {{ $product->price }} CHF <button type="submit" class="btn btn-danger btn-xs delete_pro_com" data-commande="{{ $commande->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_comm }}" > X</button></li>
+              <li>{{ $product->name }} - Qté : {{ $product->pivot->quantity_comm }} - Prix : {{ $product->price }} CHF <button type="submit" class="btn btn-danger btn-xs delete_pro_com" data-commande="{{ $commande->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_comm }}" > X</button></li>
             @endforeach
           @else
             "Pas des produits"
@@ -76,7 +76,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
                 <tr id="product{{ $product->id }}">
 
 
-                  <td>{{ $product->name }} - {{ $product->id }}</td>
+                  <td>{{ $product->name }} </td>
                   <td>  <label> {{ $product->quantity }} </label> </td>
                   {!! Form::open(['url' => route('addproduct.commande', $commande->id), 'method' => 'post']) !!}
                   {!! Form::hidden('product_id', $product->id) !!}
@@ -100,7 +100,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
       </div>
     </div>
   </div>
-  
+
 @endsection
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
