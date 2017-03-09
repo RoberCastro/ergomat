@@ -26,9 +26,9 @@
                 <td><p>{{ $sale->price }}</p></td>
 
                 <td>
-                  {!! Form::open(['url' => route('sale.destroy', $sale->id), 'method' => 'delete']) !!}
-                  <button type="submit" class="btn btn-danger btn-xs">Supprimer</button>
-                  {!! Form::close() !!}
+                  <td>
+                    <a role="button" class="btn btn-info" href="{{ route('sale.show', $sale->id) }}">Voir</a>
+                  </td>
                 </td>
               </tr>
             @endforeach

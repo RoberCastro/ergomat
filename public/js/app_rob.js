@@ -87,7 +87,7 @@ $(document).ready(function(){
       $.ajax({
         type: "GET",
         headers: { 'X-XSRF-TOKEN' : $_token },
-        url: '../produit/quite' + '/' + loan  + '/' + produit + '/' + quantity,
+        url: '../product/removeproductloan' + '/' + loan  + '/' + produit + '/' + quantity,
         success: function (data) {
           console.log("Success");
           location.reload();

@@ -21,18 +21,6 @@
     'csrfToken' => csrf_token(),
   ]); ?>
   </script>
-  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  document.addEventListener("DOMContentLoaded", (event) =>{
-  //do work
-  $(window).load(function () {
-  $("#test").datepicker();
-});
-
-});
-</script> -->
-
 
 </head>
 <body>
@@ -44,6 +32,7 @@
           <!-- Collapsed Hamburger -->
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
             <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -76,6 +65,12 @@
                 <li>
                   <a href="{{ route('user.show', Auth::id()) }}">Profil</a>
                 </li>
+                <li>
+                  @if(Auth::user()->isadmin)
+                  <a href="{{ route('admin') }}">Administration</a>
+                  @endif
+                </li>
+
                 <li>
                   <a href="{{ route('user.edit', Auth::id()) }}">Seetings</a>
                 </li>
@@ -234,15 +229,15 @@
 <script type="text/javascript">
 
 $(function() {
-    $('.panel-group').on('mouseenter.collapse.data-api', '[data-toggle=collapse]', function(e) {
-        var $this = $(this),
-            href, target = $this.attr('data-target') || e.preventDefault() || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //stri for ie7
-            ,
-            option = $(target).data('collapse') ? 'show' : $this.data()
-            $(target).collapse(option)
-    })
+  $('.panel-group').on('mouseenter.collapse.data-api', '[data-toggle=collapse]', function(e) {
+    var $this = $(this),
+    href, target = $this.attr('data-target') || e.preventDefault() || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //stri for ie7
+    ,
+    option = $(target).data('collapse') ? 'show' : $this.data()
+    $(target).collapse(option)
+  })
 })
-  </script>
+</script>
 
 </body>
 </html>

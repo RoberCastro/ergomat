@@ -25,9 +25,9 @@
                 <td><p>{{ $commande->date_commande }}</p></td>
                 <td><p>{{ $commande->price }}</p></td>
                 <td>
-                  {!! Form::open(['url' => route('commande.destroy', $commande->id), 'method' => 'delete']) !!}
-                  <button type="submit" class="btn btn-danger btn-xs">Supprimer</button>
-                  {!! Form::close() !!}
+                  <td>
+                    <a role="button" class="btn btn-info" href="{{ route('commande.show', $commande->id) }}">Voir</a>
+                  </td>
                 </td>
               </tr>
             @endforeach

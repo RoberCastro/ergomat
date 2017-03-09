@@ -34,35 +34,33 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
     <p>Prix de la vente : {{ $sale->price }}   </p>
     <p>
       <strong>Products:</strong>
-      <ul>
-        @if($sale->price != 0)
-        <table class="table table-striped table-responsive">
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Qté</th>
-              <th>Prix</th>
-              <th>Option</th>
-            </tr>
-          </thead>
-          <tbody>
+      @if($sale->price != 0)
+      <table class="table table-striped table-responsive">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Qté</th>
+            <th>Prix</th>
+            <th>Option</th>
+          </tr>
+        </thead>
+        <tbody>
 
-            @foreach($sale->products as $product)
-            <tr>
-              <td>{{ $product->name }}</td>
-              <td>{{ $product->pivot->quantity_sale }}</td>
-              <td>{{ $product->price }} CHF</td></td>
-              <td><button type="submit" class="btn btn-danger btn-xs delete_pro_sale" data-sale="{{ $sale->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_sale }}" > X</button></td>
-            </tr>
-            @endforeach
+          @foreach($sale->products as $product)
+          <tr>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->pivot->quantity_sale }}</td>
+            <td>{{ $product->price }} CHF</td></td>
+            <td><button type="submit" class="btn btn-danger btn-xs delete_pro_sale" data-sale="{{ $sale->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_sale }}" > X</button></td>
+          </tr>
+          @endforeach
 
-          </tbody>
-        </table>
-        @else
-        "Pas des produits"
-        @endif
+        </tbody>
+      </table>
+      @else
+      "Pas des produits"
+      @endif
 
-      </ul>
     </p>
   </div>
 </div>
