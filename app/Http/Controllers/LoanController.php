@@ -146,7 +146,7 @@ class LoanController extends Controller
     $loan = Loan::findOrFail($id);
 
     $pdf = PDF::loadView('loan.pdf', [ 'loan' => $loan ]);
-    // return $pdf->stream(); pour simplement afficher dans le navigateur.
-    return $pdf->download("Prêt #$loan->id.pdf");
+    return $pdf->stream(); //pour simplement afficher dans le navigateur.
+    //return $pdf->download("Prêt #$loan->id.pdf"); //Pour le télécharger
   }
 }

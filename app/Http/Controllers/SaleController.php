@@ -72,7 +72,7 @@ class SaleController extends Controller
     }
 
     $sale->patient_id = $patient->id;
-    $sale->price = $request->price;
+    //$sale->price = $request->price;
     $sale->date_sale = $request->date_sale;
     $sale->created_by = $user->email;
 

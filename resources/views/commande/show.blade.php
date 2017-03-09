@@ -59,7 +59,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
             </ul>
           </div>
         @endif
-        <div class="row">
+        <div class="row table-responsive">
           <table id="table_product" class="display nowrap" cellspacing="0" width="100%">
             <thead>
               <tr>

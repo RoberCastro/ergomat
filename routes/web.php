@@ -37,6 +37,9 @@ Route::resource('product', 'ProductController');
 Route::post('product/add/{commande}', 'AddProductController@commande')->name('addproduct.commande');
 Route::get('product/remove/{commande}/{product}/{quantity}', 'AddProductController@remove_product')->name('addproduct.remove_product');
 
+Route::post('product/addproductsale/{sale}', 'AddProductController@sale')->name('addproductsale.sale');
+Route::get('product/removeproductsale/{sale}/{product}/{quantity}', 'AddProductController@remove_product_sale')->name('addproduct.remove_product_sale');
+
 Route::post('produit/ajout/{loan}', 'LoanAddProductController@loan')->name('loanaddproduct.loan');
 Route::get('produit/quite/{loan}/{product}/{quantity}', 'LoanAddProductController@remove')->name('loanaddproduct.remove');
 
