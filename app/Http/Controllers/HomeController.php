@@ -7,6 +7,8 @@ use Mail;
 use App\Patient;
 use App\Loan;
 use App\Product;
+use App\Categorie;
+use App\Statu;
 
 
 
@@ -32,8 +34,10 @@ class HomeController extends Controller
   public function index()
   {
     $products = Product::all();
+    $categories = Categorie::all();
 
-    return view('home', ['products' => $products]);
+
+    return view('home', ['products' => $products, 'categories' => $categories]);
   }
   /**
   * Show the application dashboard.

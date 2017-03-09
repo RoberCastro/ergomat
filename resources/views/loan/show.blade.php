@@ -57,6 +57,9 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
             <thead>
               <tr>
                 <th>Nom du produit - Id</th>
+                <th>Categorie</th>
+                <th>Status</th>
+
                 <th>Q</th>
                 <th>Qté</th>
                 <th>Ajout</th>
@@ -69,6 +72,8 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 
 
                   <td>{{ $product->name }} - {{ $product->id }}</td>
+                  <td><p>{{ $product->categorie_id }}</p></td>
+                  <td><p>{{ $product->statu_id }}</p></td>
                   <td>  <label> {{ $product->quantity }} </label> </td>
                   {!! Form::open(['url' => route('loanaddproduct.loan', $loan->id), 'method' => 'post']) !!}
                   {!! Form::hidden('product_id', $product->id) !!}
