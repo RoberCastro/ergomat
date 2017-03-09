@@ -9,6 +9,7 @@ use App\User;
 use App\Sale;
 use App\Patient;
 use App\Product;
+use PDF;
 use Auth;
 use Carbon\Carbon;
 
@@ -77,7 +78,7 @@ class SaleController extends Controller
     $sale->created_by = $user->email;
 
     $sale->save();
-    return redirect()->route('sale.show', [ 'id' => $sale->id, 'sale' => $sale, 'products' => $products ]);
+    return redirect()->route('sale.show', [ 'id' => $sale->id ]);
   }
 
   /**
@@ -130,5 +131,13 @@ class SaleController extends Controller
     public function destroy($id)
     {
       //
+    }
+    public function pdf($id)
+    {
+      $sale = Sale::findOrFail($id);
+
+      $pdf = PDF::loadView('sale.pdf', [ 'sale' => $sale ]);
+      return $pdf->stream(); //pour simplement afficher dans le navigateur.
+      //return $pdf->download("Prêt #$loan->id.pdf"); //Pour le télécharger
     }
   }

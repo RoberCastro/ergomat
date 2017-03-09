@@ -5,6 +5,8 @@ use App\Product;
 use App\Commande;
 use App\Loan;
 use App\Sale;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddProductRequest;
 
@@ -15,6 +17,7 @@ class AddProductController extends Controller
   {
     $commande = Commande::findOrFail($id);
     $product = Product::findOrFail($request->product_id);
+    $user = User::find(Auth::id());
 
 
     // If the quantity requested is higher than available => we redirect with errors.
@@ -43,6 +46,8 @@ class AddProductController extends Controller
     // $product->save();
 
     // We update the price
+    $commande->modified_by = $user->email;
+
     $commande->price = $commande->price + ($product->price * $request->qty_pro);
     $commande->save();
 
@@ -58,7 +63,12 @@ class AddProductController extends Controller
 
     // $product->quantity = ($product->quantity) + $quantity;
     // $product->save();
-
+    // dd($commande->products->contains($product));
+    //
+    // if ($commande->products->contains($product)) {
+    // }else{
+    //   $commande->price = 0.00;
+    // }
     $commande->price = $commande->price - ($product->price * $quantity);
     $commande->save();
 
@@ -73,6 +83,8 @@ class AddProductController extends Controller
   {
     $sale = Sale::findOrFail($id);
     $product = Product::findOrFail($request->product_id);
+    $user = User::find(Auth::id());
+
 
 
     // If the quantity requested is higher than available => we redirect with errors.
@@ -101,6 +113,7 @@ class AddProductController extends Controller
     $product->save();
 
     // We update the price
+    $sale->modified_by = $user->email;
     $sale->price = $sale->price + ($product->price * $request->qty_pro);
     $sale->save();
 
@@ -130,6 +143,8 @@ class AddProductController extends Controller
 
     $loan = Loan::findOrFail($id);
     $product = Product::findOrFail($request->product_id);
+    $user = User::find(Auth::id());
+
 
     // If the quantity requested is higher than available => we redirect with errors.
     if ($request->machin > $product->quantity) {
@@ -152,6 +167,9 @@ class AddProductController extends Controller
     }
 
     // We update the product quantity.
+    $loan->modified_by = $user->email;
+    $loan->save();
+
     $product->quantity = ($product->quantity) - ($request->machin);
     $product->save();
 

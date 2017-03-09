@@ -7,13 +7,13 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 
 @include('layouts.errors')
 <div class="panel panel-default">
-  <div class="panel-heading">Mon prêt
+  <div class="panel-heading">Prêt
     @can('edit', $loan)
     | <a href="{{ route('loan.edit', $loan->id) }}">Modifier</a>
     @endcan
     {!! Form::open(['url' => route('loan.pdf', $loan->id), 'method' => 'get']) !!}
 
-    <td><button type="submit" class="btn-success btn-sm ajout_loan"><i class="fa fa-plus-circle"></i> Imprimer</button></td>
+    <td><button type="submit" class="btn-success btn-sm "><i class="fa fa-plus-circle"></i> Imprimer</button></td>
     {!! Form::close() !!}
 
 
@@ -21,21 +21,36 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 
   <div class="panel-body">
     <h2>Id du prêt : {{ $loan->id }}</h2>
-    <p>Date de début :
-      {{ Carbon\Carbon::parse($loan->date_start)->format('d-M-Y') }}
-    </p>
-    <p>Date de fin :
-      {{ Carbon\Carbon::parse($loan->date_end)->format('d-M-Y')  }}
-    </p>
-    <p>Crée par :
-      {{ $loan->created_by }}
-      // Pour le patient n° : {{ $patient->reference }}
-    </p>
-    <p>Modifié par :
-      {{ $loan->modified_by }} en: {{ Carbon\Carbon::parse($loan->updated_at)->format('d-M-Y')  }}
-    </p>
+
+    <div class="row" style="padding-bottom:20px;">
+    	<div  class="col-sm-4 col-md-4">
+    		{!! Form::label('side', 'Date de début : ', []) !!}
+        {!! Form::date('date_start', $loan->date_start, ['class'=>'form-control', 'style'=>'max-width: 150px;']) !!}
+    	</div>
+      <div  class="col-sm-4 col-md-4">
+    		{!! Form::label('quantity', 'Date de fin : ', []) !!}
+        {!! Form::date('date_end', $loan->date_end, ['class'=>'form-control', 'style'=>'max-width: 150px;']) !!}
+    	</div>
+    </div>
+
+    <div class="row" style="padding-bottom:20px;">
+      <div  class="col-sm-4 col-md-4">
+        {!! Form::label('creation', '1. Crée par : '.$loan->created_by, []) !!}
+      </div>
+      <div  class="col-sm-4 col-md-4">
+        {!! Form::label('ref', '2. Pour le patient : '.$patient->reference, []) !!}
+      </div>
+      <div  class="col-sm-4 col-md-4">
+        {!! Form::label('modif', '3. Modifié par : '.$loan->modified_by, []) !!}
+      </div>
+    </div>
+
     <p>
       <strong>Products:</strong>
+
+      @if($loan->products == null)
+        "hello"
+      @else
       <table class="table table-striped table-responsive">
 
         <thead>
@@ -60,6 +75,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
         </tbody>
 
       </table>
+      @endif
 
     </p>
     <hr>

@@ -21,7 +21,7 @@
     <strong>Products:</strong>
     <ul>
         @foreach($loan->products as $product)
-        <li>{{ $product->name }} - Qté : {{ $product->pivot->quantity_comm }} - Prix : {{ $product->price }}</li>
+        <li>{{ $product->name }} - Qté : {{ $product->pivot->quantity_loan }} - Prix : {{ $product->price }}</li>
         @endforeach
     </ul>
 </p>

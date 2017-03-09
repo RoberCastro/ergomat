@@ -6,10 +6,10 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 @section('content')
 
 <div class="panel panel-default">
-  <div class="panel-heading">Ma commande
-    @can('edit', $commande)
-    | <a href="{{ route('commande.edit', $commande->id) }}">Modifier</a>
-    @endcan
+  <div class="panel-heading">Commande
+    {!! Form::open(['url' => route('commande.pdf', $commande->id), 'method' => 'get']) !!}
+    <td><button type="submit" class="btn-success btn-sm"><i class="fa fa-plus-circle"></i> Imprimer</button></td>
+    {!! Form::close() !!}
   </div>
 
   <div class="panel-body">
@@ -45,7 +45,7 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
             <td>{{ $product->name }}</td>
             <td>{{ $product->pivot->quantity_comm }}</td>
             <td>{{ $product->price }} CHF</td></td>
-            <td><button type="submit" class="btn btn-danger btn-xs delete_pro_sale" data-sale="{{ $commande->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_comm }}" > X</button></td>
+            <td><button type="submit" class="btn btn-danger btn-xs delete_pro_comm" data-commande="{{ $commande->id }}" data-product="{{ $product->id }}" data-quantity="{{ $product->pivot->quantity_comm }}" > X</button></td>
           </tr>
           @endforeach
 

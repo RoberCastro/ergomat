@@ -7,23 +7,23 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 
 @include('layouts.errors')
 <div class="panel panel-default">
-  <div class="panel-heading">Ma vente
-    @can('edit', $sale)
-    | <a href="{{ route('sale.edit', $sale->id) }}">Modifier</a>
-    @endcan
+  <div class="panel-heading">Vente
+    {!! Form::open(['url' => route('sale.pdf', $sale->id), 'method' => 'get']) !!}
+    <td><button type="submit" class="btn-success btn-sm"><i class="fa fa-plus-circle"></i> Imprimer</button></td>
+    {!! Form::close() !!}
   </div>
 
   <div class="panel-body">
     <h2>Id de la vente : {{ $sale->id }}</h2>
 
-    <p>Date de fin :
+    <p>Date de la vente :
       {{ Carbon\Carbon::parse($sale->date_sale)->format('d-M-Y')  }}
     </p>
     <p>Crée par :
       {{ $sale->created_by }}
     </p>
     <p>Modifié par :
-      {{ $sale->modified_by }} en: {{ Carbon\Carbon::parse($sale->updated_at)->format('d-M-Y')  }}
+      {{ $sale->modified_by }} le : {{ Carbon\Carbon::parse($sale->updated_at)->format('d-M-Y')  }}
     </p>
     <hr>
     <div class="row">

@@ -55,7 +55,7 @@ $(document).ready(function(){
     }
 
   });
-  $('.delete_pro_com').click(function(evt){
+  $('.delete_pro_comm').click(function(evt){
     var produit = $(evt.target).attr("data-product");
     var commande = $(evt.target).attr("data-commande");
     var quantity = $(evt.target).attr("data-quantity");

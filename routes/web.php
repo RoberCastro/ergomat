@@ -48,8 +48,12 @@ Route::resource('loan', 'LoanController');
 Route::get('loan/{load}/pdf', 'LoanController@pdf')->name('loan.pdf');
 
 Route::resource('sale', 'SaleController');
+Route::get('sale/{sale}/pdf', 'SaleController@pdf')->name('sale.pdf');
+
 
 Route::resource('commande', 'CommandeController');
+Route::get('commande/{commande}/pdf', 'CommandeController@pdf')->name('commande.pdf');
+
 
 
 Route::post('store_patient', ['as' => 'store_patient', 'uses' => 'PatientController@store']);

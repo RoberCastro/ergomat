@@ -73,7 +73,7 @@ class UserController extends Controller
 
         //Sauvegarde l'utilisateur
         $user->save();
-        
+
         //Send an email pour reseter son password
         $this->sendResetLinkEmail($request);
 
@@ -89,8 +89,9 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $users = User::all();
 
-        return view('user.show', ['user' => $user]);
+        return view('user.show', ['user' => $user, 'users' => $users]);
     }
 
     /**

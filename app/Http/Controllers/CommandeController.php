@@ -9,6 +9,7 @@ use App\User;
 use App\Commande;
 use App\Patient;
 use App\Product;
+use PDF;
 use Auth;
 use Carbon\Carbon;
 
@@ -71,7 +72,7 @@ class CommandeController extends Controller
 
     $commande->save();
 
-    return redirect()->route('commande.show', [ 'id' => $commande->id, 'commande' => $commande, 'products' => $products ]);
+    return redirect()->route('commande.show', [ 'id' => $commande->id ]);
   }
 
   /**
@@ -125,5 +126,13 @@ class CommandeController extends Controller
   public function destroy($id)
   {
     //
+  }
+  public function pdf($id)
+  {
+    $commande = Commande::findOrFail($id);
+
+    $pdf = PDF::loadView('commande.pdf', [ 'commande' => $commande ]);
+    return $pdf->stream(); //pour simplement afficher dans le navigateur.
+    //return $pdf->download("Prêt #$loan->id.pdf"); //Pour le télécharger
   }
 }

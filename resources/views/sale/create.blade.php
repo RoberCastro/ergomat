@@ -47,37 +47,10 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 
                           <td>{{ $patients->reference }}</td>
 
-      <!-- <button class="btn btn-xs btn-primary open-modal" value="{{$patients->id}}"><i class="glyphicon glyphicon-edit"></i> Edit</button>
-                          <button class="btn btn-xs btn-danger delete" value="{{$patients->id}}"><i class="glyphicon glyphicon-trash"></i> Delete</button> -->
-
                         </tr>
                       @endforeach
                     </tbody>
                   </table>
-
-                  <!-- Modal -->
-                  <div id="myModal" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                          <h4 class="modal-title" id="myModalLabel">Nouveau patient</h4>
-                        </div>
-                        <div class="modal-body">
-                          {!! Form::open(array('id' => 'frm', 'name' => 'frm', 'class' => 'form-horizontal')) !!}
-                          <input id="token" type="hidden" value="{{$encrypted_token}}">
-                          @include('sale._form')
-                          {!! Form::close() !!}
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-                <!-- Modal -->
               </div>
             </div>
           </div>

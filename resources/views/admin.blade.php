@@ -58,7 +58,7 @@
             </div>
           </form>
           <hr />
-          <a href="{{ route('admin.email') }}">Test email</a>
+          <!-- <a href="{{ route('admin.email') }}">Test email</a> -->
         </div>
       </div>
     </div>
