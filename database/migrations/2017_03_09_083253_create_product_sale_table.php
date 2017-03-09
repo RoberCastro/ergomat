@@ -45,6 +45,6 @@ class CreateProductSaleTable extends Migration
           $table->dropForeign(['sale_id']);
         });
         Schema::drop('product_sale');
-      }
+      
     }
 }
