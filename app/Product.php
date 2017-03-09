@@ -24,7 +24,7 @@ class Product extends Model
 	}
 
 
-	public function status()
+	public function statu()
 	{
 		return $this->belongsTo('App\Statu');
 	}
@@ -33,7 +33,7 @@ class Product extends Model
 	{
 		return $this->belongsToMany('App\Sale')->withPivot('quantity_sale')->withTimestamps();
 	}
-	public function categories()
+	public function categorie()
 	{
 		return $this->belongsTo('App\Categorie');
 	}

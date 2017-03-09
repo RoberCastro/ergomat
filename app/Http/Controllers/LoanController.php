@@ -81,7 +81,7 @@ class LoanController extends Controller
 
     //dd($patient);
 
-    return redirect()->route('loan.show', [ 'id' => $loan->id, 'commande' => $loan, 'products' => $products, 'patient' => $patient ]);
+    return redirect()->route('loan.show', [ 'id' => $loan->id ]);
   }
 
   /**
@@ -93,7 +93,7 @@ class LoanController extends Controller
   public function show(Request $request, $id)
   {
     $loan = loan::find($id);
-    $products = Product::all();
+    $products = Product::with('categorie', 'statu')->get();
     $user = User::find(Auth::id());
     $patient = Patient::where('id', $loan->patient_id)->first();
     //dd($patient);
