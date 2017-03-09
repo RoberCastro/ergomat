@@ -7,44 +7,46 @@ use Illuminate\Database\Migrations\Migration;
 class CreateProductSaleTable extends Migration
 {
     /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    * Run the migrations.
+    *
+    * @return void
+    */
     public function up()
     {
-      Schema::create('product_sale', function (Blueprint $table) {
+        Schema::create('product_sale', function (Blueprint $table) {
 
-        $table->integer('sale_id')->unsigned();
-        $table->foreign('sale_id')
-        ->references('id')
-        ->on('sales')
-        ->onDelete('cascade')
-        ->onUpdate('cascade');
+            $table->integer('sale_id')->unsigned();
+            $table->foreign('sale_id')
+            ->references('id')
+            ->on('sales')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
-        $table->integer('product_id')->unsigned();
-        $table->foreign('product_id')
-        ->references('id')
-        ->on('products')
-        ->onDelete('cascade')
-        ->onUpdate('cascade');
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')
+            ->references('id')
+            ->on('products')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
 
-        $table->double('quantity_sale');
+            $table->double('quantity_sale');
 
-        $table->timestamps();    }
+            $table->timestamps();
+        });
+    }
 
     /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    * Reverse the migrations.
+    *
+    * @return void
+    */
     public function down()
     {
         Schema::table('product_sale', function (Blueprint $table) {
-          $table->dropForeign(['product_id']);
-          $table->dropForeign(['sale_id']);
+            $table->dropForeign(['product_id']);
+            $table->dropForeign(['sale_id']);
         });
         Schema::drop('product_sale');
-      
+
     }
 }
