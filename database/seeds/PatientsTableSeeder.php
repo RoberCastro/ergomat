@@ -30,5 +30,29 @@ class PatientsTableSeeder extends Seeder
 
         ]);
     }
+    for ($i=0; $i < 3; $i++) {
+      Patient::create([
+
+        'user_id' => 2,
+        'reference' => 6000+$i,
+
+        ]);
+    }
+    for ($i=0; $i < 5; $i++) {
+      Patient::create([
+
+        'user_id' => 1,
+        'reference' => 8000+$i,
+
+        ]);
+    }
+    for ($i=0; $i < 5; $i++) {
+      Patient::create([
+
+        'user_id' => 1,
+        'reference' => 9000+$i,
+
+        ]);
+    }
   }
 }

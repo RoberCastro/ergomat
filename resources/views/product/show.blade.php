@@ -4,7 +4,7 @@
 
   <div class="panel panel-default">
     <div class="panel-heading">Mon product
-        <a href="{{ route('product.edit', $product->id) }}">Modifier</a>
+        <!-- <a href="{{ route('product.edit', $product->id) }}">Modifier</a> -->
     </div>
 
     <div class="panel-body">

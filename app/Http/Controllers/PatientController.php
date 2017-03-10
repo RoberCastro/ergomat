@@ -33,7 +33,7 @@ class PatientController extends Controller
   */
   public function index()
   {
-    $patients = Patient::all();
+    $patients = Patient::with('user')->get();
 
     return view('patient.index', ['patients' => $patients]);
   }

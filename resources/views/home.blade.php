@@ -9,34 +9,48 @@
     @if($products->isEmpty())
     <p>Vous n'avez pas encore d'product.</p>
     @else
-    <table class="table table-hover">
+    <table id="table_product" class="display nowrap" cellspacing="0" width="100%">
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Nom du produit - Id</th>
           <th>Categorie</th>
           <th>Status</th>
-          <th>Côté</th>
-          <th>Prix</th>
-          <th>Voir</th>
+
+          <th>Q</th>
+          <th>Qté</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="product-list" name="product-list">
+
         @foreach($products as $product)
-        <tr>
-          <td><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></td>
+        <tr id="product{{ $product->id }}">
+
+
+          <td>{{ $product->name }} </td>
           <td><p>{{ $product->categorie->name }}</p></td>
           <td><p>{{ $product->statu->name }}</p></td>
-          <td><p>{{ $product->side }}</p></td>
-          <td><p>{{ $product->price }}</p></td>
+          <td>  <label> {{ $product->quantity }} </label> </td>
           <td>
             <a role="button" class="btn btn-info" href="{{ route('product.show', $product->id) }}">Voir</a>
           </td>
+
         </tr>
         @endforeach
+
       </tbody>
     </table>
     @endif
-    <a href="{{ route('product.create') }}" class="btn btn-info">Créer un product</a>
   </div>
 </div>
+</div>
+</div>
+
+
 @endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+$('#table_product').DataTable();
+});
+</script>

@@ -22,8 +22,8 @@ class LoansTableSeeder extends Seeder
           'patient_id' => 1,
     			'date_start' => $dt->toDateString(),
     			'date_end' => $dttt->toDateString(),
-          'created_by' => 'Admin',
-          'modified_by' => 'Admin',
+          'created_by' => 'admin@gmail.com',
+          'modified_by' => 'admin@gmail.com',
     			]);
     	}
 
@@ -32,8 +32,8 @@ class LoansTableSeeder extends Seeder
           'patient_id' => 2,
     			'date_start' => $dt->toDateString(),
     			'date_end' => $dttt->toDateString(),
-          'created_by' => 'Basic',
-          'modified_by' => 'Basic',
+          'created_by' => 'basic@gmail.com',
+          'modified_by' => 'basic@gmail.com',
 
     			]);
     	}

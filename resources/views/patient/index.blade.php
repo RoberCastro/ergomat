@@ -8,28 +8,23 @@
       @if($patients->isEmpty())
         <p>Vous n'avez pas encore d'patient.</p>
       @else
-        <table class="table table-hover">
+
+        <table id="table_patient" class="display nowrap" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>N° de référence</th>
               <th>Ergothérapeute</th>
-              <th>Suprimmer?</th>
             </tr>
           </thead>
-          <tbody>
-            @foreach($patients as $patient)
-              <tr>
-                <td><a href="{{ route('patient.show', $patient->id) }}">{{ $patient->reference }}</a></td>
-                <td><a href="{{ route('patient.show', $patient->id) }}">{{ $patient->user_id }}</a></td>
-                <td>
-                  <!-- Attention il faut travailler les authorisations comme dans l'example du prof -->
-                  {!! Form::open(['url' => route('patient.destroy', $patient->id), 'method' => 'delete']) !!}
-                  <button type="submit" class="btn btn-danger btn-xs">Supprimer</button>
-                  {!! Form::close() !!}
+          <tbody id="patient-list" name="patient-list">
 
-                </td>
-              </tr>
+            @foreach($patients as $patient)
+            <tr>
+              <td><a href="{{ route('patient.show', $patient->id) }}">{{ $patient->reference }}</a></td>
+              <td><a href="{{ route('user.show', $patient->user->id) }}">{{ $patient->user->name }}</a></td>
+            </tr>
             @endforeach
+
           </tbody>
         </table>
       @endif
@@ -38,3 +33,10 @@
   </div>
 </div>
 @endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#table_patient').DataTable();
+});
+</script>
