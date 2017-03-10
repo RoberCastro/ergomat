@@ -33,7 +33,9 @@ class LoanController extends Controller
   */
   public function index()
   {
-    $loans = Loan::all();
+    $loans = Loan::with('patient')->get();
+    $products = Product::with('categorie', 'statu')->get();
+
     $products = Product::all();
 
     return view('loan.index', ['loans' => $loans, 'products' => $products]);
