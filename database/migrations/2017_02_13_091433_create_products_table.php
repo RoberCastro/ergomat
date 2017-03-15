@@ -23,10 +23,10 @@ class CreateProductsTable extends Migration
             ->onDelete('restrict')
             ->onUpdate('restrict');
 
-            $table->integer('statu_id')->unsigned();
-            $table->foreign('statu_id')
+            $table->integer('stock_id')->unsigned();
+            $table->foreign('stock_id')
             ->references('id')
-            ->on('status')
+            ->on('stocks')
             ->onDelete('restrict')
             ->onUpdate('restrict');
 
@@ -35,11 +35,10 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->string('side')->nullable();
             $table->double('price');
-            $table->date('pro_date_status');
-            $table->double('quantity')->nullable();
             $table->timestamps();
         });
    }
+
 
     /**
      * Reverse the migrations.
@@ -50,7 +49,7 @@ class CreateProductsTable extends Migration
     {
          Schema::table('products', function (Blueprint $table) {
             $table->dropForeign(['categorie_id']);
-            $table->dropForeign(['statu_id']);
+            $table->dropForeign(['stock_id']);
          });
         Schema::drop('products');
     }

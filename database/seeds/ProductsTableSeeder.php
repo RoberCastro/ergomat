@@ -14,49 +14,44 @@ class ProductsTableSeeder extends Seeder
     for ($i=0; $i < 2; $i++) {
       Product::create([
         'categorie_id' => 1,
-        'statu_id' => 2,
+        'stock_id' => 1+$i,
         'name' => 'Chaise roulante'.($i+$i),
         'description' => 'Ceci est la drescription du produit',
         'side' => 'Gauche',
         'price' => 2500,
-        'pro_date_status' => '2017-02-25',
-        'quantity' => 3 + $i,
+
       ]);
     }
     for ($i=0; $i < 2; $i++) {
       Product::create([
         'categorie_id' => 2,
-        'statu_id' => 1,
+        'stock_id' => 3+$i,
         'name' => 'Lit Model '.$i.'lDC',
         'description' => 'Ceci est la drescription du produit',
         'side' => 'Droite',
         'price' => 250,
-        'pro_date_status' => '2017-02-25',
-        'quantity' => 10 + $i,
+
       ]);
     }
     for ($i=0; $i < 2; $i++) {
       Product::create([
         'categorie_id' => 1,
-        'statu_id' => 4,
+        'stock_id' => 5+$i,
         'name' => 'Eponge chaise roulate '.$i.'xgV',
         'description' => 'Ceci est la drescription du produit',
         'side' => 'Droite',
         'price' => 250,
-        'pro_date_status' => '2017-02-25',
-        'quantity' => 10 + $i,
       ]);
     }
     for ($i=0; $i < 2; $i++) {
       Product::create([
         'categorie_id' => 1,
-        'statu_id' => 4,
+        'stock_id' => 7+$i,
         'name' => 'Attelle uhn'.$i.' poignet',
         'description' => 'Ceci est la drescription du produit',
         'side' => 'Droite',
         'price' => 250,
-        'pro_date_status' => '2017-02-25',
-        'quantity' => 10 + $i,
+
       ]);
     }
   }

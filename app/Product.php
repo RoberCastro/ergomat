@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 	protected $fillable = [
-		'name', 'description', 'side', 'price', 'pro_date_status','quantity'
+		'name', 'description', 'side', 'price'
 	];
 
 
@@ -24,9 +24,9 @@ class Product extends Model
 	}
 
 
-	public function statu()
+	public function stock()
 	{
-		return $this->belongsTo('App\Statu');
+		return $this->belongsTo('App\Stock');
 	}
 
 	public function sales()
