@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Stock;
+
 
 class StocksTableSeeder extends Seeder
 {
