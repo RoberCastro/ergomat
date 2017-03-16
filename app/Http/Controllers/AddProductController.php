@@ -21,11 +21,11 @@ class AddProductController extends Controller
 
 
     // If the quantity requested is higher than available => we redirect with errors.
-    if ($request->qty_pro > $product->quantity) {
-      return redirect()->back()->withErrors([
-        'qty_pro' => 'The quantity requested is more than available.'
-      ]);
-    }
+    // if ($request->qty_pro > $product->quantity) {
+    //   return redirect()->back()->withErrors([
+    //     'qty_pro' => 'The quantity requested is more than available.'
+    //   ]);
+    // }
 
     // The command already has the product => we update the pivot table.
     if ($commande->products->contains($product)) {
@@ -88,7 +88,7 @@ class AddProductController extends Controller
 
 
     // If the quantity requested is higher than available => we redirect with errors.
-    if ($request->qty_pro > $product->quantity) {
+    if ($request->qty_pro > $product->stock->quantity) {
       return redirect()->back()->withErrors([
         'qty_pro' => 'The quantity requested is more than available.'
       ]);
@@ -109,8 +109,8 @@ class AddProductController extends Controller
     }
 
     // We update the product quantity.
-    $product->quantity = ($product->quantity) - ($request->qty_pro);
-    $product->save();
+    $product->stock->quantity = ($product->stock->quantity) - ($request->qty_pro);
+    $product->stock->save();
 
     // We update the price
     $sale->modified_by = $user->email;
@@ -127,8 +127,8 @@ class AddProductController extends Controller
     $product = Product::findOrFail($id_product);
 
 
-    $product->quantity = ($product->quantity) + $quantity;
-    $product->save();
+    $product->stock->quantity = ($product->stock->quantity) + $quantity;
+    $product->stock->save();
 
     $sale->price = $sale->price - ($product->price * $quantity);
     $sale->save();
@@ -147,7 +147,7 @@ class AddProductController extends Controller
 
 
     // If the quantity requested is higher than available => we redirect with errors.
-    if ($request->machin > $product->quantity) {
+    if ($request->machin > $product->stock->quantity) {
       return redirect()->back()->withErrors([
         'machin' => 'The quantity requested is more than available.'
       ]);
@@ -170,20 +170,19 @@ class AddProductController extends Controller
     $loan->modified_by = $user->email;
     $loan->save();
 
-    $product->quantity = ($product->quantity) - ($request->machin);
-    $product->save();
+    $product->stock->quantity = ($product->stock->quantity) - ($request->machin);
+    $product->stock->save();
 
     return redirect()->back();
   }
 
   public function remove_product_loan($id_loan, $id_product, $quantity)
   {
-    //dd($quantity);
+    //dd("hello");
     $loan = Loan::findOrFail($id_loan);
     $product = Product::findOrFail($id_product);
-
-    $product->quantity = ($product->quantity) + $quantity;
-    $product->save();
+    $product->stock->quantity = ($product->stock->quantity) + $quantity;
+    $product->stock->save();
 
     $loan->products()->detach($id_product);
 

@@ -28,8 +28,10 @@
 
           <td>{{ $product->name }} </td>
           <td><p>{{ $product->categorie->name }}</p></td>
-          <td><p>{{ $product->statu->name }}</p></td>
-          <td>  <label> {{ $product->quantity }} </label> </td>
+          <td><p>{{ $product->categorie->name }}</p></td>
+          <td><p>{{ $product->categorie->name }}</p></td>
+          {{-- <td><p>{{ $product->statu->name }}</p></td> --}}
+          {{-- <td>  <label> {{ $product->quantity }} </label> </td> --}}
           <td>
             <a role="button" class="btn btn-info" href="{{ route('product.show', $product->id) }}">Voir</a>
           </td>

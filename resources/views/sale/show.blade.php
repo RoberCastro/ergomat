@@ -84,21 +84,22 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
             </tr>
           </thead>
           <tbody id="product-list" name="product-list">
+            <meta name="csrf_token" content="{{ csrf_token() }}"/>
 
             @foreach($products as $product)
             <tr id="product{{ $product->id }}">
 
 
               <td>{{ $product->name }} - {{ $product->id }}</td>
-              <td>  <label> {{ $product->quantity }} </label> </td>
+              <td>  <label> {{ $product->stock->quantity }} </label> </td>
               {!! Form::open(['url' => route('addproductsale.sale', $sale->id), 'method' => 'post']) !!}
               {!! Form::hidden('product_id', $product->id) !!}
               <td>{!! Form::number('qty_pro', 1, array('id' => 'qty_pro', 'class' => 'qty_pro', 'style'=>'max-width: 40px;')) !!}</td>
 
-              @if ($product->quantity === 0.00)
+              @if ($product->stock->quantity === 0.00)
               <td>{!! Form::label('date_sale', 'Produit fini', []) !!}</td>
               @else
-              <td><button type="submit" class="btn-success btn-sm ajout" id="btn-ajout-pro-sale" data-la="{{ $product->quantity }}"><i class="fa fa-plus-circle"></i> Ajouter à la vente</button></td>
+              <td><button type="submit" class="btn-success btn-sm ajout" id="btn-ajout-pro-sale" data-la="{{ $product->stock->quantity }}"><i class="fa fa-plus-circle"></i> Ajouter à la vente</button></td>
               @endif
               <td>{{ $product->price }}</td>
 

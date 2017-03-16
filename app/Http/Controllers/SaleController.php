@@ -34,7 +34,7 @@ class SaleController extends Controller
   public function index()
   {
     $sales = Sale::all();
-    $products = Product::all();
+    $products = Product::with('categorie', 'stock')->get();
 
     return view('sale.index', ['sales' => $sales, 'products' => $products]);
   }
@@ -64,8 +64,6 @@ class SaleController extends Controller
     $sale = new Sale;
     $user = User::find(Auth::id());
     $products = Product::all();
-
-
     $patient = Patient::where('reference', $request->patient)->first();
     //dd($patient[0]['attributes']['id']);
     if($request->price){
@@ -90,9 +88,11 @@ class SaleController extends Controller
   public function show(Request $request, $id)
   {
     $sale = Sale::find($id);
-    $products = Product::all();
+    $user = User::find(Auth::id());
+    $products = Product::with('categorie', 'stock')->get();
+    $patient = Patient::where('reference', $request->patient)->first();
 
-    return view('sale.show', ['sale' => $sale, 'products' => $products]);
+    return view('sale.show', ['sale' => $sale, 'products' => $products, 'user' => $user, 'patient' => $patient]);
   }
 
   /**

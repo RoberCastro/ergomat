@@ -78,16 +78,24 @@ $(document).ready(function(){
   });
 
   $('.delete_pro_loan').click(function(evt){
+    //console.log("hello");
     var produit = $(evt.target).attr("data-product");
     var loan = $(evt.target).attr("data-loan");
     var quantity = $(evt.target).attr("data-quantity");
+    console.log(quantity);
     var x = confirm("Are you sure you want to delete?");
     if(x)
     {
       $.ajax({
-        type: "GET",
-        headers: { 'X-XSRF-TOKEN' : $_token },
-        url: '../product/removeproductloan' + '/' + loan  + '/' + produit + '/' + quantity,
+        type: "POST",
+        beforeSend: function (xhr) {
+          var token = $('meta[name="csrf_token"]').attr('content');
+
+          if (token) {
+            return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+          }
+        },
+        url: '../product/removeproductloan/' + loan  + '/' + produit + '/' + quantity,
         success: function (data) {
           console.log("Success");
           location.reload();
@@ -107,8 +115,14 @@ $(document).ready(function(){
     if(x)
     {
       $.ajax({
-        type: "GET",
-        headers: { 'X-XSRF-TOKEN' : $_token },
+        type: "POST",
+        beforeSend: function (xhr) {
+          var token = $('meta[name="csrf_token"]').attr('content');
+
+          if (token) {
+            return xhr.setRequestHeader('X-CSRF-TOKEN', token);
+          }
+        },
         url: '../product/removeproductsale' + '/' + sale  + '/' + produit + '/' + quantity,
         success: function (data) {
           console.log("Success");

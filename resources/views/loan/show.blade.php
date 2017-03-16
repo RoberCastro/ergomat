@@ -22,6 +22,8 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
   <div class="panel-body">
     <h2>Id du prêt : {{ $loan->id }}</h2>
 
+    {!! Form::open(['url' => route('loan.savechanges', $loan->id), 'method' => 'post']) !!}
+
     <div class="row" style="padding-bottom:20px;">
     	<div  class="col-sm-4 col-md-4">
     		{!! Form::label('side', 'Date de début : ', []) !!}
@@ -31,7 +33,15 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
     		{!! Form::label('quantity', 'Date de fin : ', []) !!}
         {!! Form::date('date_end', $loan->date_end, ['class'=>'form-control', 'style'=>'max-width: 150px;']) !!}
     	</div>
+      <div  class="col-sm-4 col-md-4">
+        {{ Form::submit('Sauvegarder modifications', array('class' => 'btn-success', 'style'=>'margin-top: 30px;')) }}
+
+        {{-- <td><button type="submit" class="btn-success btn-sm ajout_loan" ><i class="fa fa-plus-circle"></i> Ajouter au prêt</button></td> --}}
+      </div>
     </div>
+
+    {!! Form::close() !!}
+
 
     <div class="row" style="padding-bottom:20px;">
       <div  class="col-sm-4 col-md-4">
@@ -62,6 +72,8 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
           </tr>
         </thead>
         <tbody>
+          <meta name="csrf_token" content="{{ csrf_token() }}"/>
+
 
           @foreach($loan->products as $product)
           <tr>
@@ -100,8 +112,6 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
             <tr>
               <th>Nom du produit - Id</th>
               <th>Categorie</th>
-              <th>Status</th>
-
               <th>Q</th>
               <th>Qté</th>
               <th>Ajout</th>
@@ -115,16 +125,15 @@ $encrypted_token = $encrypter->encrypt(csrf_token());
 
               <td>{{ $product->name }} </td>
               <td><p>{{ $product->categorie->name }}</p></td>
-              <td><p>{{ $product->statu->name }}</p></td>
-              <td>  <label> {{ $product->quantity }} </label> </td>
+              <td><p>{{ $product->stock->quantity }}</p></td>
               {!! Form::open(['url' => route('addproductloan.loan', $loan->id), 'method' => 'post']) !!}
               {!! Form::hidden('product_id', $product->id) !!}
               <td>{!! Form::number('machin', 1, array('id' => 'machin', 'class' => 'machin', 'style'=>'max-width: 40px;')) !!}</td>
 
-              @if ($product->quantity === 0.00)
+              @if ($product->stock->quantity === 0.00)
               <td><p>Produit fini</p></td>
               @else
-              <td><button type="submit" class="btn-success btn-sm ajout_loan" id="btn-ajout-pro-loan" data-la="{{ $product->quantity }}"><i class="fa fa-plus-circle"></i> Ajouter au prêt</button></td>
+              <td><button type="submit" class="btn-success btn-sm ajout_loan" id="btn-ajout-pro-loan" data-la="{{ $product->stock->quantity }}"><i class="fa fa-plus-circle"></i> Ajouter au prêt</button></td>
               @endif
 
               {!! Form::close() !!}

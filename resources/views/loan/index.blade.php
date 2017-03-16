@@ -21,7 +21,7 @@
                   <tr>
                     <th>ID</th>
                     <th>Patient</th>
-                    <th>Date de start</th>
+                    <th>Date de début</th>
                     <th>Date de fin</th>
                     <th>Option</th>
                   </tr>

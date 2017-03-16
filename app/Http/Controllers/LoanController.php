@@ -33,8 +33,9 @@ class LoanController extends Controller
   */
   public function index()
   {
+
     $loans = Loan::with('patient')->get();
-    $products = Product::with('categorie', 'statu')->get();
+    $products = Product::with('categorie', 'stock')->get();
 
     $products = Product::all();
 
@@ -96,7 +97,7 @@ class LoanController extends Controller
   public function show(Request $request, $id)
   {
     $loan = loan::find($id);
-    $products = Product::with('categorie', 'statu')->get();
+    $products = Product::with('categorie', 'stock')->get();
     $user = User::find(Auth::id());
     $patient = Patient::where('id', $loan->patient_id)->first();
     //dd($patient);
@@ -138,10 +139,31 @@ class LoanController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function destroy($id)
+  public function destroy( $id)
   {
     //
   }
+  public function savechanges(Request $request, $id)
+  {
+    $loan = Loan::findOrFail($id);
+
+    $loan->date_start = $request->date_start;
+
+    if($request->date_end == ""){
+
+      $loan->date_end = null;
+
+    }
+    else {
+
+      $loan->date_end = $request->date_end;
+    }
+    $loan->save();
+    return redirect()->back();
+
+  }
+
+
 
   public function pdf($id)
   {
