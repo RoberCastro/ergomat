@@ -16,7 +16,7 @@
                         <th>Categorie</th>
                         <th>Status</th>
 
-                        <th>Q</th>
+                        <th>Disponibilité</th>
                         <th>Qté</th>
                     </tr>
                     </thead>
@@ -45,6 +45,7 @@
                                 </select>
                             </td>
                             <td><p>{{$product->stock->available}}</p></td>
+
 
 
                         </tr>
