@@ -33,11 +33,10 @@ class HomeController extends Controller
   */
   public function index()
   {
-    $products = Product::all();
-    $categories = Categorie::all();
+    $products = Product::with('categorie', 'stock')->get();
 
 
-    return view('home', ['products' => $products, 'categories' => $categories]);
+    return view('home', ['products' => $products]);
   }
   /**
   * Show the application dashboard.

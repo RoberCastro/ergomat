@@ -210,3 +210,55 @@ $(document).ready(function(){
     });
   });
 });
+
+
+$(document).ready(function () {
+
+    var dispo;
+    var quantity;
+    var available ;
+    var inactive;
+    var loaned ;
+    var reparation ;
+    var ordered;
+
+    $('.quants').on('change', function (evt) {
+
+        evt.preventDefault();
+
+        dispo = event.currentTarget.selectedOptions[0].innerHTML;
+
+        quantity = $(evt.target).attr("data-quantity");
+        available = $(evt.target).attr("data-available");
+        inactive = $(evt.target).attr("data-inactive");
+        loaned = $(evt.target).attr("data-loaned");
+        reparation = $(evt.target).attr("data-reparation");
+        ordered = $(evt.target).attr("data-ordered");
+
+        switch (dispo) {
+            case "Total":
+                evt.target.parentNode.nextElementSibling.innerHTML = quantity;
+                break;
+            case "Disponible":
+                evt.target.parentNode.nextElementSibling.innerHTML = available;
+                break;
+            case "Inactive":
+                evt.target.parentNode.nextElementSibling.innerHTML = inactive;
+                break;
+            case "Prêté":
+                evt.target.parentNode.nextElementSibling.innerHTML = loaned;
+                break;
+            case "En reparation":
+                evt.target.parentNode.nextElementSibling.innerHTML = reparation;
+                break;
+            case "Commandés":
+                evt.target.parentNode.nextElementSibling.innerHTML = ordered;
+                break;
+            default:
+                evt.target.parentNode.nextElementSibling.innerHTML = available;
+                break;
+        }
+
+
+    });
+});
