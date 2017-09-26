@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="panel panel-default">
-    <div class="panel-heading">Tous les products</div>
+    <div class="panel-heading">Tous les produits</div>
 
     <div class="panel-body table-responsive">
       @if($products->isEmpty())

@@ -1,4 +1,4 @@
-<h2>Id du prêt : {{ $sale->id }}</h2>
+<h2>Id de la vente : {{ $sale->id }}</h2>
 
 <p>Date de début :
     {{ Carbon\Carbon::parse($sale->date_sale)->format('d-M-Y') }}

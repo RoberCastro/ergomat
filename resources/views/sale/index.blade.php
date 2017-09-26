@@ -3,13 +3,13 @@
 @section('content')
 
 <div class="panel panel-default">
-  <div class="panel-heading">Tous les ventes</div>
+  <div class="panel-heading">Toutes les ventes</div>
 
-  <div class="panel-body">
+  <div class="panel-body table-responsive">
     @if($sales->isEmpty())
-    <p>Vous n'avez pas encore des ventes.</p>
+      <p>Vous n'avez pas encore des ventes.</p>
     @else
-    <table class="table table-hover">
+      <table id="table_sale" class="display" cellspacing="0" width="100%">
       <thead>
         <tr>
           <th>ID</th>
@@ -23,7 +23,7 @@
         <tr>
           <td><a href="{{ route('sale.show', $sale->id) }}">{{ $sale->id }}</a></td>
           <td><p>{{ $sale->date_sale }}</p></td>
-          <td><p>{{ $sale->price }}</p></td>          
+          <td><p>{{ $sale->price }}</p></td>
           <td>
             <a role="button" class="btn btn-info" href="{{ route('sale.show', $sale->id) }}">Voir</a>
           </td>
@@ -48,3 +48,12 @@
 </div>
 </div>
 @endsection
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"
+        integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#table_sale').DataTable();
+    });
+</script>

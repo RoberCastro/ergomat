@@ -1,4 +1,4 @@
-<h2>Id du prêt : {{ $commande->id }}</h2>
+<h2>Id de la commande : {{ $commande->id }}</h2>
 
 <p>Date de début :
     {{ Carbon\Carbon::parse($commande->date_commande)->format('d-M-Y') }}
