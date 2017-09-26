@@ -214,7 +214,7 @@ $(document).ready(function(){
 
 $(document).ready(function () {
 
-    var dispo;
+ /*   var dispo;
     var quantity;
     var available ;
     var inactive;
@@ -256,6 +256,40 @@ $(document).ready(function () {
                 break;
             default:
                 evt.target.parentNode.nextElementSibling.innerHTML = available;
+                break;
+        }
+
+
+    });*/
+
+    $('#quants1').on('change', function (evt) {
+
+        evt.preventDefault();
+
+        disponibilite = event.currentTarget.selectedOptions[0].innerHTML;
+
+
+        switch (disponibilite) {
+            case "Total":
+                $('.quants').val("0");
+                break;
+            case "Disponible":
+                $('.quants').val("1");
+                break;
+            case "Inactive":
+                $('.quants').val("2");
+                break;
+            case "Prêté":
+                $('.quants').val("3");
+                break;
+            case "En reparation":
+                $('.quants').val("4");
+                break;
+            case "Commandés":
+                $('.quants').val("5");
+                break;
+            default:
+                $('.quants').val("1");
                 break;
         }
 

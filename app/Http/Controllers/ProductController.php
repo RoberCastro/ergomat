@@ -60,7 +60,7 @@ class ProductController extends Controller
     $product->description = $request->description;
     $product->side = $request->side;
     $product->price = $request->price;
-    $product->pro_date_status = $request->pro_date_status;
+    //$product->pro_date_status = $request->pro_date_status;
     $product->quantity = $request->quantity;
 
     $product->save();
